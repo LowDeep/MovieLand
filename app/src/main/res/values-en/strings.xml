@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MovieLand</string>
+
+    <string name="titre_du_film">Film title : %s</string>
+    <string name="annee_de_sortie">Out Year : %d</string>
+    <string name="genre">Gender : %s</string>
+    <string name="acteurs">Actor: %s</string>
+    <string name="resume">Resume : %s</string>
+
+
+
+</resources>

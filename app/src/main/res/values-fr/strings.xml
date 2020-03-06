@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MovieLand</string>
 
@@ -6,6 +7,8 @@
     <string name="genre">Genre : %s</string>
     <string name="acteurs">Acteur: %s</string>
     <string name="resume">Résumé : %s</string>
+
+
 
 
 </resources>
