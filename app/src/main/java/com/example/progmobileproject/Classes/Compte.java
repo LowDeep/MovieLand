@@ -11,13 +11,11 @@ public class Compte {
 
     private String name;
     private String mail;
-    private String numero;
     private String password;
 
-    public Compte(String n, String m, String num, String pas) {
+    public Compte(String n, String m, String pas) {
         this.name = n;
         this.mail = m;
-        this.numero = num;
         this.password = pas;
     }
 
@@ -35,14 +33,6 @@ public class Compte {
 
     public void setMail(String mail) {
         this.mail = mail;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
     }
 
     public String getPassword() {
@@ -75,12 +65,12 @@ public class Compte {
     }
 
 
-    public void UpdateCompte(Integer idC, Compte cnew, Context context) {
+    public static void UpdateCompte(Integer idC, Compte cnew, Context context) {
 
         ContentValues content = new ContentValues();
 
         String username = cnew.getName();
-        String mail = cnew.getNumero();
+        String mail = cnew.getMail();
         String password = cnew.getPassword();
         LocalSQLiteOpenHelper helper = new LocalSQLiteOpenHelper((context));
         SQLiteDatabase db = helper.getReadableDatabase();

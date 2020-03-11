@@ -70,7 +70,6 @@ public class ConnectionActivity extends AppCompatActivity {
             else {
                 //RENITIALISER LS CHAMPS VOIR AFFICHER "CONNEXION IMPOSSIBLE"
 
-
                     pseudo.setText(null);
                     pass.setText(null);
             }
