@@ -18,6 +18,8 @@
     <string name="genre_ADD">Gender : </string>
     <string name="acteurs_ADD">Actors(s): </string>
     <string name="resume_ADD">Resume : </string>
+    <string name="inscription">Sign up</string>
+    <string name="connection">Sign in</string>
 
 
 </resources>

@@ -16,6 +16,7 @@ public class MainApplicationPage extends AppCompatActivity {
     ImageView logo_connection;
     ListView list_films;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +33,14 @@ public class MainApplicationPage extends AppCompatActivity {
                     startViewDVDActivity(id);
                 }
         );
+
+
+        //quand on clique sur le logo de connection on est rediriger vers la page de connection
+        logo_connection.setOnClickListener(v->{
+            Intent it = new Intent(this , ConnectionActivity.class);
+            startActivity(it);
+        });
+
     }
 
     //methode pour commencer une activite qui affiche les infos sur le film entre en parametre

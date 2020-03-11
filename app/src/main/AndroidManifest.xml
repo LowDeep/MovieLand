@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ViewFilmActivity"></activity>
+        <activity android:name=".AddFilmActivity"></activity>
+        <activity android:name=".ConnectionActivity"></activity>
+        <activity android:name=".InscriptionActivity"></activity>
+        <activity android:name=".PageAcceuilModeConnecte"></activity>
         <activity android:name=".MainApplicationPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

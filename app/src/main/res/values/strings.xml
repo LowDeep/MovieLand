@@ -16,5 +16,7 @@
     <string name="genre_ADD">Genre du film: </string>
     <string name="acteurs_ADD">Acteur(s): </string>
     <string name="resume_ADD">Résumé : </string>
+    <string name="inscription">Inscription</string>
+    <string name="connection">Connection</string>
 
 </resources>
