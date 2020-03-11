@@ -75,26 +75,26 @@ public class Compte {
     }
 
 
-    public void UpdateCompte(Integer idC,Compte cnew, Context context) {
+    public void UpdateCompte(Integer idC, Compte cnew, Context context) {
 
         ContentValues content = new ContentValues();
 
-        String username=cnew.getName();
-        String mail= cnew.getNumero();
-        String password=cnew.getPassword();
+        String username = cnew.getName();
+        String mail = cnew.getNumero();
+        String password = cnew.getPassword();
         LocalSQLiteOpenHelper helper = new LocalSQLiteOpenHelper((context));
         SQLiteDatabase db = helper.getReadableDatabase();
-        db.execSQL("Update Comptes set username="+username +","+ " mail="+mail+","+ " password="+password+" where idC="+idC, null);
+        db.execSQL("Update Comptes set username=" + username + "," + " mail=" + mail + "," + " password=" + password + " where idC=" + idC, null);
 
 
     }
 
-    public Cursor getAllComptes(Context context){
+    public Cursor getAllComptes(Context context) {
 
         LocalSQLiteOpenHelper helper = new LocalSQLiteOpenHelper((context));
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM Comptes", null);
-        if(c!=null){
+        if (c != null) {
             System.out.println("cursor non null");
         }
         return c;
@@ -120,24 +120,36 @@ public class Compte {
         return resu;
     }
 
-    public Cursor getOneCompte(String idC, Context context){
+    public Cursor getOneCompte(String idC, Context context) {
 
         LocalSQLiteOpenHelper helper = new LocalSQLiteOpenHelper((context));
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM comptes where idC=" + idC, null);
-        if(c!=null){
+        if (c != null) {
             System.out.println("cursor non null");
         }
         return c;
     }
 
+    public static Cursor getOneCompte(String username, String password, Context context) {
 
+        LocalSQLiteOpenHelper helper = new LocalSQLiteOpenHelper((context));
+        SQLiteDatabase db = helper.getReadableDatabase();
+        String sqlSelect = "Select * from Comptes where username="+username+ " and password="+password;
+        Cursor c=db.rawQuery(sqlSelect, null);
+        if (c != null) {
+            System.out.println("cursor non null");
+        }
+        return c;
+    }
 
+    public static boolean CompteValide(String username, String password, Context context) {
 
-
-
-
-
-
-
+        LocalSQLiteOpenHelper helper = new LocalSQLiteOpenHelper((context));
+        SQLiteDatabase db = helper.getReadableDatabase();
+        String sqlSelect = "Select * from Comptes where username="+username+ " and password="+password;
+        Cursor c=db.rawQuery(sqlSelect, null);
+        if(c==null) return false;
+        else return true;
+    }
 }
