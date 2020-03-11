@@ -9,14 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewFilmActivity"></activity>
-        <activity android:name=".MainApplicationPage">
+        <activity android:name=".AddFilmActivity"></activity>
+        <activity
+            android:name=".PageAcceuilModeConnecte"
+            android:theme="@style/ConnectedTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ViewFilmActivity" />
+        <activity android:name=".MainApplicationPage"></activity>
     </application>
 
 </manifest>

@@ -6,6 +6,15 @@
     <string name="genre">Genre : %s</string>
     <string name="acteurs">Acteur: %s</string>
     <string name="resume">Résumé : %s</string>
-
+    <string name="mon_compte">Mon Compte</string>
+    <string name="ajout_film_bouton">Ajouter un film</string>
+    <string name="deconnection">Déconnection</string>
+    <string name="modifier_mes_informations">Modifier mes informations</string>
+    <string name="liste_films_ajoute">Ma liste de films</string>
+    <string name="titre_du_film_ADD">Titre du film : </string>
+    <string name="annee_de_sortie_ADD">Année de sortie :</string>
+    <string name="genre_ADD">Genre du film: </string>
+    <string name="acteurs_ADD">Acteur(s): </string>
+    <string name="resume_ADD">Résumé : </string>
 
 </resources>

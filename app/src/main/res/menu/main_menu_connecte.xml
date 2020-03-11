@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_mon_compte"
+        android:title="@string/mon_compte"
+        app:showAsAction = "never"></item>
+    <item android:id="@+id/action_modifier_mes_infos"
+        android:title="@string/modifier_mes_informations"
+        app:showAsAction = "never"></item>
+    <item android:id="@+id/action_deconnection"
+        android:title="@string/deconnection"
+        app:showAsAction = "never"
+        ></item>
+
+</menu>

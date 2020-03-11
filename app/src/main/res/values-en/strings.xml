@@ -8,7 +8,16 @@
     <string name="genre">Gender : %s</string>
     <string name="acteurs">Actor: %s</string>
     <string name="resume">Resume : %s</string>
-
+    <string name="mon_compte">My Account</string>
+    <string name="ajout_film_bouton">Add Movie</string>
+    <string name="deconnection">Logout</string>
+    <string name="modifier_mes_informations">Change informations</string>
+    <string name="liste_films_ajoute">List of my movies</string>
+    <string name="titre_du_film_ADD">Movie title : </string>
+    <string name="annee_de_sortie_ADD">Year :</string>
+    <string name="genre_ADD">Gender : </string>
+    <string name="acteurs_ADD">Actors(s): </string>
+    <string name="resume_ADD">Resume : </string>
 
 
 </resources>
