@@ -120,11 +120,11 @@ public class Compte {
         return resu;
     }
 
-    public Cursor getOneCompte(String username, Context context){
+    public Cursor getOneCompte(String idC, Context context){
 
         LocalSQLiteOpenHelper helper = new LocalSQLiteOpenHelper((context));
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM comptes where idC=" + username, null);
+        Cursor c = db.rawQuery("SELECT * FROM comptes where idC=" + idC, null);
         if(c!=null){
             System.out.println("cursor non null");
         }
