@@ -32,7 +32,7 @@ public class AddFilmActivity extends AppCompatActivity {
         editTitreFilm = (EditText)findViewById(R.id.addFilm_titre);
         editAnnee = (EditText)findViewById(R.id.addFilm_annee);
         editResume = (EditText)findViewById(R.id.addDVD_resume);
-        editGenre = (EditText)findViewById(R.id.addFilm_genre)
+        editGenre = (EditText)findViewById(R.id.addFilm_genre);
 
         btnAddActeur = (Button)findViewById(R.id.addFilm_addActeur);
         btnOk = (Button)findViewById(R.id.addDVD_ok);
@@ -74,7 +74,7 @@ public class AddFilmActivity extends AppCompatActivity {
     //pr sauvegarder les acteurs fils
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onPostCreate(savedInstanceState);
+        //super.onPostCreate(savedInstanceState);
         String[] acteurs = new String[addActeursLayout.getChildCount()];
         for(int i=0; i<addActeursLayout.getChildCount();i++)
         {
@@ -84,10 +84,10 @@ public class AddFilmActivity extends AppCompatActivity {
                 acteurs[i] = ((EditText)child).getText().toString();
             }
         }
-        //METHODE NE MARCHE PAS!!! faut mettre dans un fichier ou bdd
+        //Ajouter les acteurs dans un StringArray
 
-        //savedInstanceState.putStringArray("acteurs",acteurs);
-        // super.onSaveInstanceState(savedInstantState);
+        outState.putStringArray("acteurs",acteurs);
+        super.onSaveInstanceState(outState);
     }
 
 
