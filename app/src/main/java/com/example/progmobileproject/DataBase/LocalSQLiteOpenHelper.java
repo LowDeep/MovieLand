@@ -20,6 +20,8 @@ public class LocalSQLiteOpenHelper extends SQLiteOpenHelper {
         String sqlFileTable = "CREATE TABLE Film(id INTEGER PRIMARY KEY, titre TEXT , annee NUMERIC, genre TEXT , acteurs TEXT , resume TEXT, pathImage TEXT)";
         db.execSQL(sqlFileTable);
 
+        String sqlFileTable2 = "CREATE TABLE Comptes(idC INTEGER PRIMARY KEY, username text not null, mail text not null, password text not null)";
+        db.execSQL(sqlFileTable2);
     }
 
     @Override
