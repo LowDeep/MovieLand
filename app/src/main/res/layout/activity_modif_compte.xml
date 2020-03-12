@@ -7,7 +7,7 @@
         android:background="@color/colorBlack"
         android:gravity="center"
         android:orientation="vertical"
-    tools:context=".DataBase.ModifCompteActivity">>
+    tools:context=".ModifCompteActivity">>
 
         <TextView
             android:layout_width="250dp"

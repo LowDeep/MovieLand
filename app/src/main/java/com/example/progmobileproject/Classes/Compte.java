@@ -10,11 +10,6 @@ import com.example.progmobileproject.DataBase.LocalSQLiteOpenHelper;
 public class Compte {
 
     private int idCompte;
-
-    public int getIdCompte() {
-        return idCompte;
-    }
-
     private String username;
     private String email;
     private String password;
@@ -23,6 +18,10 @@ public class Compte {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public int getIdCompte() {
+        return idCompte;
     }
 
     public String getUsername() {

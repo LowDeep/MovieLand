@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DataBase.ModifCompteActivity"></activity>
+        <activity android:name=".ModifCompteActivity"></activity>
         <activity android:name=".ViewFilmActivity" />
         <activity android:name=".AddFilmActivity" />
         <activity android:name=".ConnectionActivity" />
