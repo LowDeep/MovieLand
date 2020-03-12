@@ -39,7 +39,7 @@ public class ModifCompteActivity extends AppCompatActivity {
             EditText passF = (EditText) findViewById(R.id.PasswordM);
             if ((usernameF.toString()!="")&&(mailF.toString()!="")&&(passF.toString()!="")){
                 Compte compte=new Compte(usernameF.toString(), mailF.toString(),passF.toString());
-                Compte.UpdateCompte(idExtra, compte, this);
+               compte.UpdateCompte(idExtra, this);
             }
             //AFFICHER MESSAGE OK VOS MODIF SONT REALISEES
         });
