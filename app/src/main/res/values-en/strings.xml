@@ -32,4 +32,8 @@
     <string name ="passworderror">Enter the same password</string>
 
 
+    <!--affiche compte-->
+    <string name="afficheCompte">My account</string>
+    <string name="modifierCompte">Change my information</string>
+
 </resources>

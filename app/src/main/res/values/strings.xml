@@ -28,6 +28,11 @@
     <!-- textes de validation -->
     <string name="emailerror">Entrer une adresse email valide</string>
     <string name="dateerror">Entrer une date valide</string>
-    <string name ="passworderror">Utiliser un mot de passe identique</string>
+    <string name="passworderror">Utiliser un mot de passe identique</string>
+
+    <!--affiche compte-->
+    <string name="afficheCompte">Mon Compte</string>
+    <string name="modifierCompte">Modifier mes informations</string>
+
 
 </resources>
