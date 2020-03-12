@@ -1,4 +1,4 @@
-package com.example.progmobileproject.DataBase;
+package com.example.progmobileproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,7 +39,7 @@ public class ModifCompteActivity extends AppCompatActivity {
             EditText passF = (EditText) findViewById(R.id.PasswordM);
             if ((usernameF.toString()!="")&&(mailF.toString()!="")&&(passF.toString()!="")){
                 Compte compte=new Compte(usernameF.toString(), mailF.toString(),passF.toString());
-               compte.UpdateCompte(idExtra, this);
+                //Compte.UpdateCompte(idExtra, compte, this);// a refaire
             }
             //AFFICHER MESSAGE OK VOS MODIF SONT REALISEES
         });
