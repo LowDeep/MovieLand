@@ -9,60 +9,43 @@ import com.example.progmobileproject.DataBase.LocalSQLiteOpenHelper;
 
 public class Compte {
 
-    private String name;
-    private String mail;
-    private String numero;
+    private int idCompte;
+
+    public int getIdCompte() {
+        return idCompte;
+    }
+
+    private String username;
+    private String email;
     private String password;
 
-    public Compte(String n, String m, String num, String pas) {
-        this.name = n;
-        this.mail = m;
-        this.numero = num;
-        this.password = pas;
+    public Compte(String username,String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public String getEmail() {
+        return email;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
-    public boolean InsertCompte(Compte c, Context context) {
+    public boolean InsertCompte(Context context) {
 
         ContentValues content = new ContentValues();
 
-        content.put("username", c.getName());
-        content.put("mail", c.getMail());
-        content.put("password", c.getPassword());
+        content.put("username", this.getUsername());
+        content.put("email", this.getEmail());
+        content.put("password", this.getPassword());
         LocalSQLiteOpenHelper helper = new LocalSQLiteOpenHelper((context));
-        SQLiteDatabase db = helper.getReadableDatabase();
+        SQLiteDatabase db = helper.getWritableDatabase();
         long result = db.insert("Comptes", null, content);
         if (result == -1) {
             System.out.println("insertion false");
@@ -74,27 +57,57 @@ public class Compte {
 
     }
 
+    public void setIdCompte(int idCompte) {
+        this.idCompte = idCompte;
+    }
 
-    public void UpdateCompte(Integer idC,Compte cnew, Context context) {
+    public Compte getCompteByuserNameAndPassword(Context context) {
+
+        Compte compte = null;
+        LocalSQLiteOpenHelper helper = new LocalSQLiteOpenHelper((context));
+        SQLiteDatabase db = helper.getReadableDatabase();/*
+        String sqlSelect = "Select * from Comptes where username="+this.getUsername()+ " and password="+this.getPassword();
+        Cursor c=db.rawQuery(sqlSelect, null);
+        if (c != null) {
+            System.out.println("cursor non null");
+        }
+        return c;*/
+        String where = "username="+this.getUsername()+" and password = "+this.getPassword();
+        Cursor cursor = db.query(false,"Comptes", new String[] {"idC","username","email","password"},where,null,null,null,null,null);
+
+        if(cursor.moveToFirst())
+        {
+            compte = new Compte(cursor.getString(cursor.getColumnIndex("username")),
+                    cursor.getString(cursor.getColumnIndex("email")),
+                    cursor.getString(cursor.getColumnIndex("password")));
+            compte.setIdCompte(cursor.getInt(cursor.getColumnIndex("idC")));
+        }
+
+        cursor.close();
+        db.close();
+
+        return compte;
+    }
+
+
+    public void UpdateCompte(Integer idC, Context context) {
 
         ContentValues content = new ContentValues();
 
-        String username=cnew.getName();
-        String mail= cnew.getNumero();
-        String password=cnew.getPassword();
         LocalSQLiteOpenHelper helper = new LocalSQLiteOpenHelper((context));
         SQLiteDatabase db = helper.getReadableDatabase();
-        db.execSQL("Update Comptes set username="+username +","+ " mail="+mail+","+ " password="+password+" where idC="+idC, null);
+        db.execSQL("Update Comptes set username=" + this.getUsername() + "," + " mail=" + this.getEmail() + "," +
+                " password=" + this.getPassword() + " where idC=" + idC, null);
 
 
     }
 
-    public Cursor getAllComptes(Context context){
+    public Cursor getAllComptes(Context context) {
 
         LocalSQLiteOpenHelper helper = new LocalSQLiteOpenHelper((context));
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM Comptes", null);
-        if(c!=null){
+        if (c != null) {
             System.out.println("cursor non null");
         }
         return c;
@@ -120,12 +133,12 @@ public class Compte {
         return resu;
     }
 
-    public Cursor getOneCompte(String idC, Context context){
+    public Cursor getCompteById(String idC, Context context) {
 
         LocalSQLiteOpenHelper helper = new LocalSQLiteOpenHelper((context));
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM comptes where idC=" + idC, null);
-        if(c!=null){
+        if (c != null) {
             System.out.println("cursor non null");
         }
         return c;
@@ -133,11 +146,13 @@ public class Compte {
 
 
 
+    public boolean CompteValide(String username, String password, Context context) {
 
-
-
-
-
-
-
+        LocalSQLiteOpenHelper helper = new LocalSQLiteOpenHelper((context));
+        SQLiteDatabase db = helper.getReadableDatabase();
+        String sqlSelect = "Select * from Comptes where username="+username+ " and password="+password;
+        Cursor c=db.rawQuery(sqlSelect, null);
+        if(c==null) return false;
+        else return true;
+    }
 }

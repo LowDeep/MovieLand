@@ -17,11 +17,11 @@ public class LocalSQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sqlFileTable = "CREATE TABLE Film(id INTEGER PRIMARY KEY, titre TEXT , annee NUMERIC, genre TEXT , acteurs TEXT , resume TEXT, pathImage TEXT)";
-        db.execSQL(sqlFileTable);
+        String FilmTable = "CREATE TABLE Film(id INTEGER PRIMARY KEY, titre TEXT , annee NUMERIC, genre TEXT , acteurs TEXT , resume TEXT, pathImage TEXT)";
+        db.execSQL(FilmTable);
 
-        String sqlFileTable2 = "CREATE TABLE Comptes(idC INTEGER PRIMARY KEY, username text not null, mail text not null, password text not null)";
-        db.execSQL(sqlFileTable2);
+        String CompteTable = "CREATE TABLE Comptes(idC INTEGER PRIMARY KEY, username text not null, email text not null, password text not null)";
+        db.execSQL(CompteTable);
     }
 
     @Override
