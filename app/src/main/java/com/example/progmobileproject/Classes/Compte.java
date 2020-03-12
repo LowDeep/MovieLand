@@ -95,7 +95,7 @@ public class Compte {
 
         LocalSQLiteOpenHelper helper = new LocalSQLiteOpenHelper((context));
         SQLiteDatabase db = helper.getReadableDatabase();
-        db.execSQL("Update Comptes set username=" + this.getUsername() + "," + " mail=" + this.getEmail() + "," +
+        db.execSQL("Update Comptes set username=" + this.getUsername() + "," + " email=" + this.getEmail() + "," +
                 " password=" + this.getPassword() + " where idC=" + idC, null);
     }
 
@@ -118,7 +118,7 @@ public class Compte {
                 do {
                     resu += cursor.getString(cursor.getColumnIndex("username"));
                     resu += ";";
-                    resu += cursor.getString(cursor.getColumnIndex("mail"));
+                    resu += cursor.getString(cursor.getColumnIndex("email"));
                     resu += ";";
                     resu += cursor.getString(cursor.getColumnIndex("password"));
                     resu += "\n";
