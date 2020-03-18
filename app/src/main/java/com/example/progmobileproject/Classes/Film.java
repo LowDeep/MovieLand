@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.progmobileproject.DataBase.LocalSQLOpenHelper;
@@ -16,9 +17,10 @@ public class Film {
     private String titre;
     private int annee;
     private String genre;
-    private String[] acteurs;
+    private ArrayList<String> acteurs;
     private String resume;
     private String pathImage;
+    private String username;
 
 
 
@@ -28,7 +30,7 @@ public class Film {
         id = cursor.getLong(cursor.getColumnIndex("id"));
         titre = cursor.getString(cursor.getColumnIndex("titre"));
         annee = cursor.getInt(cursor.getColumnIndex("annee"));
-        acteurs = cursor.getString(cursor.getColumnIndex("acteurs")).split(";");
+       // acteurs = cursor.getString(cursor.getColumnIndex("acteurs")).split(";");
         resume = cursor.getString(cursor.getColumnIndex("resume"));
         genre = cursor.getString(cursor.getColumnIndex("genre"));
         pathImage = cursor.getString(cursor.getColumnIndex("pathImage"));
@@ -40,7 +42,7 @@ public class Film {
     }
 
     //constructeur 3 pour creer un film avec des valeurs depuis des string
-    public Film(String titre, int annee, String[] acteurs, String resume, String genre, String pathImage){
+    public Film(String titre, int annee, ArrayList<String> acteurs, String resume, String genre, String pathImage, String username){
        // this.id = id;
         this.titre = titre;
         this.annee = annee;
@@ -48,62 +50,44 @@ public class Film {
         this.resume= resume;
         this.genre  = genre ;
         this.pathImage = pathImage;
+        this.username= username;
 
     }
 
 
     //GETTERS - SETTERS
-    public String getPathImage() {
-        return pathImage;
-    }
+
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getTitre() {
         return titre;
     }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
-
     public int getAnnee() {
         return annee;
-    }
-
-    public void setAnnee(int annee) {
-        this.annee = annee;
-    }
-
-    public String[] getActeur() {
-        return acteurs;
-    }
-
-    public void setActeur(String[] acteur) {
-        this.acteurs = acteur;
-    }
-
-    public String getResume() {
-        return resume;
-    }
-
-    public void setResume(String resume) {
-        this.resume = resume;
     }
 
     public String getGenre() {
         return genre;
     }
 
-    public String[] getActeurs() {
+    public ArrayList<String> getActeurs() {
         return acteurs;
     }
 
+    public String getResume() {
+        return resume;
+    }
+
+    public String getPathImage() {
+        return pathImage;
+    }
+
+    public String getUsername() {
+        return username;
+    }
 
     //METHODE DE MANIPULATION DE DONNEEs
 
@@ -115,7 +99,7 @@ public class Film {
 
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        Cursor cursor = db.query(true, "Film", new String[]{"id","titre","annee","genre","acteurs", "resume","pathImage"},null,null,null,null,"titre",null);
+        Cursor cursor = db.query(true, "Film", new String[]{"id","titre","annee","genre","acteurs", "resume","pathImage","username"},null,null,null,null,"titre",null);
 
         while (cursor.moveToNext())
         {
@@ -127,14 +111,36 @@ public class Film {
         return listeFilm;
     }
 
+    //obtenir liste dvd que l'utilisateur a creer dans la db
+    public static ArrayList<Film> getMyfilmList(Context context,String username)
+    {
+        ArrayList<Film> listeFilm = new ArrayList<>();
+        LocalSQLOpenHelper helper = new LocalSQLOpenHelper(context);
+
+        SQLiteDatabase db = helper.getReadableDatabase();
+        String whereClose = "username= '"+username+"'";
+
+        Cursor cursor = db.query(true, "movies", new String[]{"id","titre","annee","genre","acteurs", "resume","pathImage","username"},whereClose,null,null,null,"titre",null);
+
+        while (cursor.moveToNext())
+        {
+            listeFilm.add(new Film(cursor));
+        }
+        Log.i("LISTE FILMS FILM",listeFilm.toString());
+        cursor.close();
+        db.close();
+
+        return listeFilm;
+    }
+
     //methode qui permet de recuperer un film depuis la base de données depuis son idFilm
     public static Film getFilm(Context context, long filmId) {
-        Film dvd = null;
+       Film dvd = null;
         LocalSQLOpenHelper helper = new LocalSQLOpenHelper((context));
 
         SQLiteDatabase db = helper.getReadableDatabase();
         String where = "id = " +String.valueOf(filmId);
-        Cursor cursor = db.query(true,"Film", new String[] {"id","titre","genre","annee","acteurs","resume","pathImage"},where,null,null,null,"titre",null);
+        Cursor cursor = db.query(true,"movies", new String[]{"id","titre","genre","annee","acteurs","resume","pathImage","username"},where,null,null,null,"titre",null);
 
         if(cursor.moveToFirst())
         {
@@ -147,6 +153,7 @@ public class Film {
         return dvd;
     }
 
+
     //inserer une nouvelle instance Film dans la bdd
     public void insert(Context context){
 
@@ -155,9 +162,12 @@ public class Film {
         ContentValues values = new ContentValues();
         values.put("titre",this.getTitre());
         values.put("genre",this.getGenre());
+        values.put("acteurs",this.getActeurs().toString());
         values.put("annee",this.getAnnee());
         values.put("resume",this.getResume());
+        values.put("username",this.getUsername());
 
+        //Log.i("values INSERT",values.toString());
 
         //insertion
         LocalSQLOpenHelper helper = new LocalSQLOpenHelper(context);
@@ -166,14 +176,14 @@ public class Film {
         db.insert("movies",null,values);
         db.close();
 
-        Toast.makeText(context, "Inscription réussie!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Insertion réussie!",Toast.LENGTH_SHORT).show();
 
 
     }
 
     //mettre a jour un enregistrement
     public void update(Context context)
-    {
+    {/*
         ContentValues values = new ContentValues();
         values.put("titre",this.titre);
         values.put("annee",this.annee);
@@ -200,21 +210,21 @@ public class Film {
         SQLiteDatabase db = helper.getWritableDatabase();
 
         db.update("Film",values,whereClause,null);
-        db.close();
+        db.close();*/
     }
 
     //supprimer l'instance
     public void delete(Context context){
 
         String whereClause = "id = ?";
-        String[] whereArgs = new String[1];
-        whereArgs[0] = String.valueOf(this.id);
+      //  ArrayList<String> whereArgs = new String[1];
+      //  whereArgs[0] = String.valueOf(this.id);
 
         LocalSQLOpenHelper helper = new LocalSQLOpenHelper(context);
 
         SQLiteDatabase db = helper.getWritableDatabase();
 
-        db.delete("Film", whereClause,whereArgs);
+        //db.delete("Film", whereClause,whereArgs);
         db.close();
     }
 

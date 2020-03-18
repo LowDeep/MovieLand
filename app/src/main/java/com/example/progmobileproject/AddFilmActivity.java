@@ -31,7 +31,11 @@ public class AddFilmActivity extends AppCompatActivity {
     Button btnOk;
     Button btnAddActeur;
 
-    ArrayList<EditText> acteurs = new ArrayList<>();
+    String userName;
+    String email;
+    String password;
+
+    ArrayList<EditText> acteursArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,17 +74,32 @@ public class AddFilmActivity extends AppCompatActivity {
 
         //action bouton ajouter film
         btnOk.setOnClickListener(v -> {
-            for (EditText acteur : acteurs)
-                Log.i("Acteur", acteur.getText().toString());
+            ArrayList<String>  actorsList = new ArrayList<>();
+            for (EditText acteur : acteursArrayList){
+                    actorsList.add(acteur.getText().toString());
+               }
+               // Log.i("Acteur", acteur.getText().toString());
+
+            Log.i("actreu",actorsList.toString());//affiche mauvais truc
 
             Intent it = new Intent(this,PageAcceuilModeConnecte.class);
+            Bundle extras = getIntent().getExtras();
+            if (extras != null) {
+                userName = extras.getString("username");
+                email = extras.getString("email");
+                password = extras.getString("password");
+            }
+            it.putExtra("username",userName);
+            it.putExtra("email",email);
+            it.putExtra("password",password);
 
             Film movie = new Film(editTitreFilm.getText().toString(),
                     Integer.valueOf(editAnnee.getText().toString()),
-                   null ,//Acteurs savedInstanceState.getStringArray("acteurs")
+                    actorsList ,//Acteurs savedInstanceState.getStringArray("acteurs")
                     editResume.getText().toString(),
                     editGenre.getText().toString(),
-                    null);//pathimage
+                    null,
+                    userName);//pathimage
 
 
 
@@ -109,10 +128,10 @@ public class AddFilmActivity extends AppCompatActivity {
     }
     private void addActeur(String content){
         //creer un nouveau editText
-        acteurs.add(new EditText(this));
+        acteursArrayList.add(new EditText(this));
 
         //prendre le dernier editText créé
-        EditText editNewActeur = acteurs.get(acteurs.size() - 1);
+        EditText editNewActeur = acteursArrayList.get(acteursArrayList.size() - 1);
         //pour gerer l'entrée utilisateur vu que c'est gerer dynamiquement on met ici et non pas dans le fichier xml
         editNewActeur.setInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME|InputType.TYPE_TEXT_FLAG_CAP_WORDS);
         if(content != null)

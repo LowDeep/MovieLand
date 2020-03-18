@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.example.progmobileproject.DataBase.LocalSQLOpenHelper;
 
+import java.util.ArrayList;
+
 public class Compte {
 
 
@@ -79,7 +81,9 @@ public class Compte {
 
         SQLiteDatabase db = helper.getReadableDatabase();
         String where = "username = '" +username +"' and password = '"+password+"'";
-        Cursor cursor = db.query(true,"accounts", new String[] {"username","email","password"},where,null,null,null,null,null);
+        Cursor cursor = db.query(true,"accounts",
+                                new String[]{"username","email","password"},
+                    where,null,null,null,   null,null);
 
         if(cursor.moveToFirst())
         {

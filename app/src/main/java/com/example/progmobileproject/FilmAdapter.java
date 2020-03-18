@@ -16,6 +16,7 @@ import java.util.List;
 
 public class FilmAdapter extends ArrayAdapter<Film> {
 
+    //pas besoin de cette classe je le fais dans le code exemple page accueil mode connecte
     Context context;
 
     public FilmAdapter(Context context , List<Film> listFilm){
@@ -28,14 +29,14 @@ public class FilmAdapter extends ArrayAdapter<Film> {
         View view = null;
         if(convertView == null){
             LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(R.layout.layout_affichage_film_miniature,parent);
+            view = layoutInflater.inflate(R.layout.listitem_dvd,parent);
         }else{
             view = convertView;
         }
         Film film = getItem(position);
 
-        TextView titre = (TextView)view.findViewById(R.id.listeItemDVD_titre);
-        TextView genre = (TextView)view.findViewById(R.id.listeItemDVD_genre);
+        TextView titre = (TextView)view.findViewById(R.id.listItemDVD_titre);
+        TextView genre = (TextView)view.findViewById(R.id.listItemDVD_genre);
         TextView resume = (TextView)view.findViewById(R.id.listItemDVD_resume);
 
 
