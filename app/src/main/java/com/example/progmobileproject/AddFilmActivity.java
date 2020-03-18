@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.progmobileproject.Classes.Film;
+
+import java.util.ArrayList;
 
 public class AddFilmActivity extends AppCompatActivity {
 
@@ -27,6 +30,8 @@ public class AddFilmActivity extends AppCompatActivity {
     EditText editGenre;
     Button btnOk;
     Button btnAddActeur;
+
+    ArrayList<EditText> acteurs = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +65,13 @@ public class AddFilmActivity extends AppCompatActivity {
 
         }else{
             //Aucun acteur saisi, on affiche un composant edit Text vide
-            addActeur(null);
+            //addActeur(null);
         }
 
         //action bouton ajouter film
         btnOk.setOnClickListener(v -> {
+            for (EditText acteur : acteurs)
+                Log.i("Acteur", acteur.getText().toString());
 
             Intent it = new Intent(this,PageAcceuilModeConnecte.class);
 
@@ -101,7 +108,11 @@ public class AddFilmActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
     private void addActeur(String content){
-        EditText editNewActeur = new EditText(this);
+        //creer un nouveau editText
+        acteurs.add(new EditText(this));
+
+        //prendre le dernier editText créé
+        EditText editNewActeur = acteurs.get(acteurs.size() - 1);
         //pour gerer l'entrée utilisateur vu que c'est gerer dynamiquement on met ici et non pas dans le fichier xml
         editNewActeur.setInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME|InputType.TYPE_TEXT_FLAG_CAP_WORDS);
         if(content != null)

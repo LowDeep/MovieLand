@@ -76,11 +76,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/addFilm_addActeurLayout"
             android:orientation="vertical">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/addFilm_acteur1"
-                android:layout_margin="8dp"/>
         </LinearLayout>
         <!--ZONE DU RESUME -->
         <TextView
