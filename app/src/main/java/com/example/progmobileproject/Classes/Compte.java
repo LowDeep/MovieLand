@@ -101,8 +101,6 @@ public class Compte {
         SQLiteDatabase db = helper.getReadableDatabase();
         db.execSQL("Update Comptes set username=" + this.getUsername() + "," + " email=" + this.getEmail() + "," +
                 " password=" + this.getPassword() + " where idC=" + idC, null);
-
-
     }
 
     public Cursor getAllComptes(Context context) {
