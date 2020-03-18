@@ -52,8 +52,8 @@ public class AddFilmActivity extends AppCompatActivity {
         //est ce que c'est une recréation suite a une rotation de l'écran ?
         if(savedInstanceState != null)
         {
-            String [] acteurs = savedInstanceState.getStringArray("acteurs");
-            for(String s : acteurs)
+            String [] listeActeurs = savedInstanceState.getStringArray("acteurs");
+            for(String s : listeActeurs)
             {
                 addActeur(s);
             }
@@ -97,7 +97,6 @@ public class AddFilmActivity extends AppCompatActivity {
             }
         }
         //Ajouter les acteurs dans un StringArray
-
         outState.putStringArray("acteurs",acteurs);
         super.onSaveInstanceState(outState);
     }

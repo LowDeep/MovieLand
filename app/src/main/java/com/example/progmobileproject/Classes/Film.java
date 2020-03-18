@@ -28,7 +28,7 @@ public class Film {
         id = cursor.getLong(cursor.getColumnIndex("id"));
         titre = cursor.getString(cursor.getColumnIndex("titre"));
         annee = cursor.getInt(cursor.getColumnIndex("annee"));
-        //acteurs = cursor.getString(cursor.getColumnIndex("acteurs")).split(";");
+        acteurs = cursor.getString(cursor.getColumnIndex("acteurs")).split(";");
         resume = cursor.getString(cursor.getColumnIndex("resume"));
         genre = cursor.getString(cursor.getColumnIndex("genre"));
         pathImage = cursor.getString(cursor.getColumnIndex("pathImage"));
@@ -115,7 +115,7 @@ public class Film {
 
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        Cursor cursor = db.query(true, "movies", new String[]{"id","titre","annee","genre","acteurs", "resume","pathImage"},null,null,null,null,"titre",null);
+        Cursor cursor = db.query(true, "Film", new String[]{"id","titre","annee","genre","acteurs", "resume","pathImage"},null,null,null,null,"titre",null);
 
         while (cursor.moveToNext())
         {
@@ -157,7 +157,6 @@ public class Film {
         values.put("genre",this.getGenre());
         values.put("annee",this.getAnnee());
         values.put("resume",this.getResume());
-
 
 
         //insertion

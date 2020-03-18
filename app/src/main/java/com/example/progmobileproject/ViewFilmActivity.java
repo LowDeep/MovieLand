@@ -56,18 +56,18 @@ public class ViewFilmActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        //INTERNATIONNALISATION des mots DEPUIS STRING
+        //INTERNATIONNALISATION des mots
         texteTitreFilm.setText(String.format(getString(R.string.titre_du_film),film.getTitre()));
         texteAnneeFilm.setText(String.format(getString(R.string.annee_de_sortie),film.getAnnee()));
         texteGenreFilm.setText(String.format(getString(R.string.genre),film.getGenre()));
         texteResumeFilm.setText(String.format(getString(R.string.resume),film.getResume()));
         //ON RECUPERE LA LISTE DES ACTEURS
-        for(String acteur : film.getActeur()){
+        /*for(String acteur : film.getActeur()){
             TextView tv = new TextView(this);
             //on recupere l'acteur on le met dans un tv puis on lajoute au layout acteurs pour l'afficher
             tv.setText(String.format(getString(R.string.acteurs),acteur));
             layoutActeurs.addView(tv);
-        }
+        }*/
     }
 
     @Override

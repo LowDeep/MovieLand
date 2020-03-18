@@ -8,7 +8,7 @@
     <string name="resume">Résumé : %s</string>
     <string name="mon_compte">Mon Compte</string>
     <string name="ajout_film_bouton">Ajouter un film</string>
-    <string name="deconnection">Déconnection</string>
+    <string name="deconnection">Déconnexion</string>
     <string name="modifier_mes_informations">Modifier mes informations</string>
     <string name="liste_films_ajoute">Ma liste de films</string>
     <string name="titre_du_film_ADD">Titre du film : </string>
@@ -24,6 +24,12 @@
     <string name="nomUtilisateur">Nom utilisateur</string>
     <string name="creerCompte">Creer un compte</string>
     <string name="enregistrer">S\'enregistrer</string>
+    <string name="ajouter">Ajouter</string>
+
+
+    <!--affiche compte-->
+    <string name="afficheCompte">Mon compte</string>
+    <string name="modifierCompte">Changer mes informations</string>
 
     <!-- textes de validation -->
     <string name="emailerror">Entrer une adresse email valide</string>

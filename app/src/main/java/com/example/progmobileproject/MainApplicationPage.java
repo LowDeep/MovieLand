@@ -28,10 +28,10 @@ public class MainApplicationPage extends AppCompatActivity {
         list_films = (ListView)findViewById(R.id.list_films);
 
         Film f = new Film();
-        listeFilms = f.getFilmList(this);
+        //listeFilms = f.getFilmList(this);
 
         ArrayAdapter<Film> adapter = new ArrayAdapter<Film>(this,android.R.layout.simple_list_item_1, listeFilms);
-        list_films.setListAdapter
+       // list_films.setListAdapter
 
         //quand on clique sur un element de la liste on est rediriger vers son contenu
         list_films.setOnItemClickListener(//lambda expression avec l'id du film que l'utilisateur a choisit
