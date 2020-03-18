@@ -43,12 +43,18 @@ public class ConnectionActivity extends AppCompatActivity {
             //sinon on affiche un message d'erreur
             Compte compte = new Compte(text_username.getText().toString(),null,
                                         text_password.getText().toString());
-            Compte compteRecup = compte.getCompteByuserNameAndPassword(this);
+           Compte compteRecup = compte.getAccoutByUsernamePassword(this,compte.getUsername(),compte.getPassword());
 
             if(compteRecup !=null){
-            it.putExtra("idCompte",compteRecup.getIdCompte());
+            it.putExtra("username",compteRecup.getUsername());
+            it.putExtra("email",compteRecup.getEmail());
+            it.putExtra("password",compteRecup.getPassword());
 
-            startActivity(it);}else{
+                Toast.makeText(this, "Connexion réussie", Toast.LENGTH_LONG).show();
+
+            startActivity(it);
+                }
+                else{
                 Toast.makeText(this, "Compte invalide", Toast.LENGTH_LONG).show();
             }
 

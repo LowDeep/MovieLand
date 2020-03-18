@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -15,7 +16,7 @@ public class MainApplicationPage extends AppCompatActivity {
 
     ImageView logo_connection;
     ListView list_films;
-
+    ArrayList<Film> listeFilms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,11 @@ public class MainApplicationPage extends AppCompatActivity {
         logo_connection = (ImageView)findViewById(R.id.LogoConnexion);
         list_films = (ListView)findViewById(R.id.list_films);
 
+        Film f = new Film();
+        listeFilms = f.getFilmList(this);
+
+        ArrayAdapter<Film> adapter = new ArrayAdapter<Film>(this,android.R.layout.simple_list_item_1, listeFilms);
+        list_films.setListAdapter
 
         //quand on clique sur un element de la liste on est rediriger vers son contenu
         list_films.setOnItemClickListener(//lambda expression avec l'id du film que l'utilisateur a choisit
@@ -55,9 +61,9 @@ public class MainApplicationPage extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         //on recupere la liste des film depuis la base de données et on la met dans une liste
-        ArrayList<Film> filmList = Film.getFilmList(this);
+      /*  ArrayList<Film> filmList = Film.getFilmList(this);
         FilmAdapter filmAdapter = new FilmAdapter(this, filmList);
         //on met la liste dans l'adapter qui sera affiché via layout_affichage_film_miniature
-        list_films.setAdapter(filmAdapter);
+        list_films.setAdapter(filmAdapter);*/
     }
 }

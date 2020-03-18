@@ -4,12 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.example.progmobileproject.Classes.Film;
 
 public class AddFilmActivity extends AppCompatActivity {
 
@@ -22,13 +27,12 @@ public class AddFilmActivity extends AppCompatActivity {
     EditText editGenre;
     Button btnOk;
     Button btnAddActeur;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //affectation du fichier de layout
         setContentView(R.layout.activity_add_film);
 
-        //Obtention des références sur les composants :depuis fichier activity_adddvd.xml
         editTitreFilm = (EditText)findViewById(R.id.addFilm_titre);
         editAnnee = (EditText)findViewById(R.id.addFilm_annee);
         editResume = (EditText)findViewById(R.id.addDVD_resume);
@@ -58,23 +62,31 @@ public class AddFilmActivity extends AppCompatActivity {
             //Aucun acteur saisi, on affiche un composant edit Text vide
             addActeur(null);
         }
-    }
-    private void addActeur(String content){
-        EditText editNewActeur = new EditText(this);
-        //pour gerer l'entrée utilisateur vu que c'est gerer dynamiquement on met ici et non pas dans le fichier xml
-        editNewActeur.setInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME|InputType.TYPE_TEXT_FLAG_CAP_WORDS);
-        if(content != null)
-        {
-            editNewActeur.setText(content);
-        }
-        addActeursLayout.addView(editNewActeur);
-    }
+
+        //action bouton ajouter film
+        btnOk.setOnClickListener(v -> {
+
+            Intent it = new Intent(this,PageAcceuilModeConnecte.class);
+
+            Film movie = new Film(editTitreFilm.getText().toString(),
+                    Integer.valueOf(editAnnee.getText().toString()),
+                   null ,//Acteurs savedInstanceState.getStringArray("acteurs")
+                    editResume.getText().toString(),
+                    editGenre.getText().toString(),
+                    null);//pathimage
 
 
+
+            movie.insert(this);
+            startActivity(it);
+
+        });
+
+    }
     //pr sauvegarder les acteurs fils
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        //super.onPostCreate(savedInstanceState);
+
         String[] acteurs = new String[addActeursLayout.getChildCount()];
         for(int i=0; i<addActeursLayout.getChildCount();i++)
         {
@@ -89,6 +101,20 @@ public class AddFilmActivity extends AppCompatActivity {
         outState.putStringArray("acteurs",acteurs);
         super.onSaveInstanceState(outState);
     }
+    private void addActeur(String content){
+        EditText editNewActeur = new EditText(this);
+        //pour gerer l'entrée utilisateur vu que c'est gerer dynamiquement on met ici et non pas dans le fichier xml
+        editNewActeur.setInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME|InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+        if(content != null)
+        {
+            editNewActeur.setText(content);
+
+        }
+        addActeursLayout.addView(editNewActeur);
+    }
+
+
+
 
 
 }

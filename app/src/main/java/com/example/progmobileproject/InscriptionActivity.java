@@ -50,8 +50,10 @@ public class InscriptionActivity extends AppCompatActivity {
               Compte account = new Compte(editText_username.getText().toString(),
                                             editText_email.getText().toString(),
                                             editText_password.getText().toString());
-              account.InsertCompte(this);
-           startActivity(it);}
+              account.insererCompte(this);
+
+          startActivity(it);
+          }
         });
 
 

@@ -39,7 +39,7 @@ public class ViewFilmActivity extends AppCompatActivity {
         long filmId = intent.getLongExtra("filmId",-1);
 
         //recuperer le dvd depuis la bdd
-        film = Film.getFilm(this, filmId);
+        //film = Film.getFilm(this, filmId);
 
 
 

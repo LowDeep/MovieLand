@@ -14,7 +14,8 @@
         <activity android:name=".AddFilmActivity" />
         <activity android:name=".ConnectionActivity" />
         <activity android:name=".InscriptionActivity" />
-        <activity android:name=".PageAcceuilModeConnecte" />
+        <activity android:name=".PageAcceuilModeConnecte"
+                 android:theme="@style/ConnectedTheme">  </activity>
         <activity android:name=".MainApplicationPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

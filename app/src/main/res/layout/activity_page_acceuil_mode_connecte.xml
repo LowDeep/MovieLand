@@ -8,17 +8,32 @@
     >
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ajout_film_button"
-        android:text="@string/ajout_film_bouton"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/liste_films_ajoute"
-        android:layout_marginTop="30dp"/>
+        <Button
+            android:id="@+id/ajout_film_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ajout_film_bouton"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="@android:dimen/thumbnail_width"/>
+
+        <TextView
+            android:layout_width="137dp"
+            android:layout_height="31dp"
+            android:text="@string/liste_films_ajoute"
+            android:layout_marginTop="20dp"/>
+        <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/user_list_films"
+        android:layout_marginTop="10dp"
+        />
+
+    </LinearLayout>
 
 </ScrollView>

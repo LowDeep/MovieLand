@@ -30,6 +30,7 @@
     <string name="emailerror">Enter a valid email</string>
     <string name="dateerror">Enter a valid date</string>
     <string name ="passworderror">Enter the same password</string>
+    <string name="ajouter">Add</string>
 
 
 </resources>
