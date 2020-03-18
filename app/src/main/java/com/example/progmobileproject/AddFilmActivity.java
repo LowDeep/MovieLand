@@ -109,6 +109,7 @@ public class AddFilmActivity extends AppCompatActivity {
     }
     private void addActeur(String content){
         //creer un nouveau editText
+
         acteurs.add(new EditText(this));
 
         //prendre le dernier editText créé
