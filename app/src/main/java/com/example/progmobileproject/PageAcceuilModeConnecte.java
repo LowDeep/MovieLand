@@ -54,11 +54,11 @@ public class PageAcceuilModeConnecte extends AppCompatActivity {
 
 
         Film f = new Film();
-        Log.i("username", userName);
+        //Log.i("username", userName);
         ArrayList<Film> listefilms = f.getMyfilmList(this,userName);
-        Log.i("list",listefilms.toString());
+        //Log.i("list",listefilms.toString());
 
-        MyAdapter adapter = new MyAdapter(this, listefilms  );
+        FilmAdapter adapter = new FilmAdapter(this, listefilms);
         listview.setAdapter(adapter);
 
         ajouter_film = (Button)findViewById(R.id.ajout_film_button);
@@ -74,58 +74,6 @@ public class PageAcceuilModeConnecte extends AppCompatActivity {
     }
 
 
-    class MyAdapter extends ArrayAdapter<String>{
-
-        Context context;
-        String filmTitle[];
-        String filmYear[];
-        String filmGender[];
-        String filmResume[];
-        ArrayList<Film> listefilms;
-
-        //int images[];
-
-        MyAdapter(Context c, String title[], String year[], String gender[], String resume[]){
-
-            super(c,R.layout.listitem_dvd,R.id.listItemDVD_titre,title);
-            this.context = c;
-            this.filmTitle = title;
-            this.filmYear=year;
-            this.filmGender=gender;
-            this.filmResume=resume;
-        }
-
-        MyAdapter(Context c, ArrayList<Film> listefilms){
-
-            super(c,R.layout.listitem_dvd,R.id.listItemDVD_titre);
-            this.context = c;
-            this.listefilms = listefilms;
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater layoutInflater = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View item = layoutInflater.inflate(R.layout.listitem_dvd,parent,false);
-            TextView myTitle = item.findViewById(R.id.listItemDVD_titre);
-            TextView myAnne = item.findViewById(R.id.listItemDVD_annee);
-            TextView myGenre = item.findViewById(R.id.listItemDVD_genre);
-            TextView myResume = item.findViewById(R.id.listItemDVD_resume);
-
-            /*
-            myTitle.setText(filmTitle[position]);
-            myAnne.setText(filmYear[position]);
-            myGenre.setText(filmGender[position]);
-            myResume.setText(filmResume[position]);*/
-
-            myTitle.setText(listefilms.get(position).getTitre());
-            myAnne.setText(listefilms.get(position).getAnnee());
-            myGenre.setText(listefilms.get(position).getGenre());
-            myResume.setText(listefilms.get(position).getResume());
-
-            return item;
-        }
-    }
 
     //menu
     @Override

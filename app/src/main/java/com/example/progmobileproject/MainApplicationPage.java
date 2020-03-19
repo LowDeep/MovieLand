@@ -28,15 +28,19 @@ public class MainApplicationPage extends AppCompatActivity {
         list_films = (ListView)findViewById(R.id.list_films);
 
         Film f = new Film();
-        //listeFilms = f.getFilmList(this);
+        //Log.i("username", userName);
+        ArrayList<Film> listefilms = f.getFilmList(this);
+        //Log.i("list",listefilms.toString());
 
-        ArrayAdapter<Film> adapter = new ArrayAdapter<Film>(this,android.R.layout.simple_list_item_1, listeFilms);
-       // list_films.setListAdapter
+        FilmAdapter adapter = new FilmAdapter(this, listefilms);
+        list_films.setAdapter(adapter);
+
+
 
         //quand on clique sur un element de la liste on est rediriger vers son contenu
         list_films.setOnItemClickListener(//lambda expression avec l'id du film que l'utilisateur a choisit
                 (parent, view, position, id) -> {
-                    startViewDVDActivity(id);
+                    Intent it = new Intent(this,ViewFilmActivity.class);
                 }
         );
 
@@ -60,10 +64,6 @@ public class MainApplicationPage extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //on recupere la liste des film depuis la base de données et on la met dans une liste
-      /*  ArrayList<Film> filmList = Film.getFilmList(this);
-        FilmAdapter filmAdapter = new FilmAdapter(this, filmList);
-        //on met la liste dans l'adapter qui sera affiché via layout_affichage_film_miniature
-        list_films.setAdapter(filmAdapter);*/
+
     }
 }

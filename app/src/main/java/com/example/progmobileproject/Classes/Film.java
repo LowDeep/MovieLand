@@ -99,7 +99,7 @@ public class Film {
 
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        Cursor cursor = db.query(true, "Film", new String[]{"id","titre","annee","genre","acteurs", "resume","pathImage","username"},null,null,null,null,"titre",null);
+        Cursor cursor = db.query(true, "movies", new String[]{"id","titre","annee","genre","acteurs", "resume","pathImage","username"},null,null,null,null,null,null);
 
         while (cursor.moveToNext())
         {
