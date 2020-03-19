@@ -33,12 +33,6 @@
 
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/layoutActeurs"/>
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,7 +40,7 @@
         android:textSize="18sp"
         android:text="Résumé"
         android:minLines="5"
-        android:maxLines="15"
+        android:maxLines="20"
         android:id="@+id/resumeFilm"/>
 
 

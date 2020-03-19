@@ -17,7 +17,7 @@
     <string name="acteurs_ADD">Acteur(s): </string>
     <string name="resume_ADD">Résumé : </string>
     <string name="inscription">Inscription</string>
-    <string name="connection">Connection</string>
+    <string name="connection">Connexion</string>
     <string name="valider_password">Valider mot de passe</string>
     <string name="password">Mot de passe</string>
     <string name="email">Adresse mail</string>
@@ -34,6 +34,6 @@
     <!-- textes de validation -->
     <string name="emailerror">Entrer une adresse email valide</string>
     <string name="dateerror">Entrer une date valide</string>
-    <string name ="passworderror">Utiliser un mot de passe identique</string>
+    <string name="passworderror">Utiliser un mot de passe identique</string>
 
 </resources>

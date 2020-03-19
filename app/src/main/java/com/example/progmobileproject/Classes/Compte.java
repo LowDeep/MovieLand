@@ -96,17 +96,18 @@ public class Compte {
         return retour;
     }
 
-/*
-    public void UpdateCompte(Integer idC, Context context) {
+
+    public void UpdateCompte(Context context) {
 
         ContentValues content = new ContentValues();
 
-        LocalSQLiteOpenHelper helper = new LocalSQLiteOpenHelper((context));
+        LocalSQLOpenHelper helper = new LocalSQLOpenHelper((context));
         SQLiteDatabase db = helper.getReadableDatabase();
-        db.execSQL("Update Comptes set username=" + this.getUsername() + "," + " email=" + this.getEmail() + "," +
-                " password=" + this.getPassword() + " where idC=" + idC, null);
+        db.execSQL("Update accounts set "+ " email=" + this.getEmail() + "," +
+                " password=" + this.getPassword() + " where username=" + username, null);
+        db.close();
     }
-
+/*
     public Cursor getAllComptes(Context context) {
 
         LocalSQLiteOpenHelper helper = new LocalSQLiteOpenHelper((context));

@@ -9,14 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AfficheCompteActivity"></activity>
+        <activity android:name=".AfficheCompteActivity" />
         <activity android:name=".ModifCompteActivity" />
         <activity android:name=".ViewFilmActivity" />
         <activity android:name=".AddFilmActivity" />
         <activity android:name=".ConnectionActivity" />
         <activity android:name=".InscriptionActivity" />
-        <activity android:name=".PageAcceuilModeConnecte"
-                 android:theme="@style/ConnectedTheme">  </activity>
+        <activity
+            android:name=".PageAcceuilModeConnecte"
+            android:theme="@style/ConnectedTheme"></activity>
         <activity android:name=".MainApplicationPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

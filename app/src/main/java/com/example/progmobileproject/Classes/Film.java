@@ -135,22 +135,22 @@ public class Film {
 
     //methode qui permet de recuperer un film depuis la base de données depuis son idFilm
     public static Film getFilm(Context context, long filmId) {
-       Film dvd = null;
+       Film f = null;
         LocalSQLOpenHelper helper = new LocalSQLOpenHelper((context));
 
         SQLiteDatabase db = helper.getReadableDatabase();
-        String where = "id = " +String.valueOf(filmId);
+        String where = "id = '" +String.valueOf(filmId)+"'";
         Cursor cursor = db.query(true,"movies", new String[]{"id","titre","genre","annee","acteurs","resume","pathImage","username"},where,null,null,null,"titre",null);
 
         if(cursor.moveToFirst())
         {
-            dvd = new Film(cursor);
+            f = new Film(cursor);
         }
 
         cursor.close();
         db.close();
 
-        return dvd;
+        return f;
     }
 
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,7 +15,7 @@ public class ViewFilmActivity extends AppCompatActivity {
     TextView texteTitreFilm;
     TextView texteAnneeFilm;
     TextView texteGenreFilm;
-    LinearLayout layoutActeurs;
+    TextView texteActeurs;
     TextView texteResumeFilm;
 
     Film film;
@@ -31,15 +32,22 @@ public class ViewFilmActivity extends AppCompatActivity {
         texteTitreFilm = (TextView) findViewById(R.id.titreFilm);
         texteAnneeFilm = (TextView) findViewById(R.id.anneeFilm);
         texteGenreFilm = (TextView) findViewById(R.id.genreFilm);
-        layoutActeurs = (LinearLayout) findViewById(R.id.layoutActeurs);
+        //texteActeurs = (TextView) findViewById(R.id.texteActeurs);
         texteResumeFilm = (TextView) findViewById(R.id.resumeFilm);
 
         Intent intent = getIntent();
         //on recupere l'id du film clique , pour aller le chercher dans la bdd et l'afficher
         long filmId = intent.getLongExtra("filmId",-1);
 
+        Log.i("id film",String.valueOf(filmId));
         //recuperer le dvd depuis la bdd
-        //film = Film.getFilm(this, filmId);
+        film = Film.getFilm(this, filmId);
+
+       texteTitreFilm.setText(film.getTitre().toString());
+        texteAnneeFilm.setText(String.valueOf(film.getAnnee()));
+        texteGenreFilm.setText(film.getGenre());
+//        texteActeurs.setText(film.getActeurs().toString());
+        texteResumeFilm.setText(film.getResume());
 
 
 

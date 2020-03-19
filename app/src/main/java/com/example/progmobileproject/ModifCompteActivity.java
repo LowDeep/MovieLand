@@ -2,9 +2,11 @@ package com.example.progmobileproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.progmobileproject.Classes.Compte;
 import com.example.progmobileproject.R;
@@ -12,36 +14,47 @@ import com.example.progmobileproject.R;
 public class ModifCompteActivity extends AppCompatActivity {
 
     Button btn_enregistrerModif;
+    EditText ancienpass;
+    EditText mail;
+    EditText pass;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modif_compte);
-        EditText username = (EditText) findViewById(R.id.PseudoM);
-        EditText mail = (EditText) findViewById(R.id.EmailM);
-        EditText pass = (EditText) findViewById(R.id.PasswordM);
+        ancienpass = (EditText) findViewById(R.id.PasswordAncien);
+        mail = (EditText) findViewById(R.id.EmailM);
+        pass = (EditText) findViewById(R.id.PasswordM);
 
         Bundle extras = this.getIntent().getExtras();
 
-        Integer idExtra=extras.getInt("idC");
-        String usernameExtra=extras.getString("username");
-        String mailExtra=extras.getString("mail");
+        String username=extras.getString("username");
+        String password=extras.getString("password");
+        String mailExtra=extras.getString("email");
 
-        username.setText(usernameExtra);
-        mail.setText(mailExtra);
 
         btn_enregistrerModif = (Button) findViewById(R.id.EnregistrerM);
 
         //definition bouton connexion
         btn_enregistrerModif.setOnClickListener(v->{
-            EditText usernameF = (EditText) findViewById(R.id.PseudoM);
+            Intent it = new Intent(this,PageAcceuilModeConnecte.class);
             EditText mailF = (EditText) findViewById(R.id.EmailM);
             EditText passF = (EditText) findViewById(R.id.PasswordM);
-            if ((usernameF.toString()!="")&&(mailF.toString()!="")&&(passF.toString()!="")){
-                Compte compte=new Compte(usernameF.toString(), mailF.toString(),passF.toString());
-                //Compte.UpdateCompte(idExtra, compte, this);// a refaire
+            if (ancienpass.equals(pass)){
+                Compte compte=new Compte(username, mailF.toString(),passF.toString());
+                compte.UpdateCompte(this);// a refaire
+            }else{
+                Toast.makeText(this,"Mauvais mot de passe",Toast.LENGTH_LONG);
             }
-            //AFFICHER MESSAGE OK VOS MODIF SONT REALISEES
+
+            it.putExtra("username", username);
+            it.putExtra("email",mailF.getText().toString());
+            it.putExtra("password",passF.getText().toString());
+
+            startActivity(it);
+
         });
     }
 

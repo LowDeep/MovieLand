@@ -9,7 +9,7 @@
     android:orientation="vertical"
     tools:context=".AfficheCompteActivity">
 
-    <TextView
+     <TextView
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:paddingLeft="10dp"
@@ -41,16 +41,6 @@
         android:layout_height="50dp"
         android:paddingLeft="10dp"
         android:text="@string/password"
-        android:textColor="@color/colorWhite"
-        android:textSize="22dp" />
-
-    <Button
-        android:id="@+id/ModifCompte"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorRose"
-        android:text="@string/modifier_mes_informations"
         android:textColor="@color/colorWhite"
         android:textSize="22dp" />
 

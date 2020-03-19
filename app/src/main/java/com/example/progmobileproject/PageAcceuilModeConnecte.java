@@ -87,15 +87,19 @@ public class PageAcceuilModeConnecte extends AppCompatActivity {
         Intent it ;
         switch(item.getItemId()){
             case R.id.action_mon_compte:
+                it = new Intent(this,AfficheCompteActivity.class);
+                it.putExtra("username",userName);
+                it.putExtra("email",email);
+                it.putExtra("password",password);
+
+                startActivity(it);
 
                 return true;
             case R.id.action_modifier_mes_infos:
-                Intent itback = getIntent();
                  it = new Intent(this,ModifCompteActivity.class);
-                Bundle bd = itback.getExtras();
-                it.putExtra("username",bd.getBundle("username").toString());
-                it.putExtra("email",bd.getBundle("email").toString());
-                it.putExtra("password",bd.getBundle("password").toString());
+                it.putExtra("username",userName);
+                it.putExtra("email",email);
+                it.putExtra("password",password);
 
                 startActivity(it);
 

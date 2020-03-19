@@ -10,7 +10,10 @@ import android.widget.TextView;
 
 public class AfficheCompteActivity extends AppCompatActivity {
 
-    Button btn_enregistrerModifCompte;
+    TextView textUsername;
+    TextView textemail;
+    TextView textepassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,34 +21,22 @@ public class AfficheCompteActivity extends AppCompatActivity {
 
         Bundle extras = this.getIntent().getExtras();
 
-        Integer idExtra=extras.getInt("idC");
         String usernameExtra=extras.getString("username");
-        String mailExtra=extras.getString("mail");
-        String passExtra=extras.getString("mail");
+        String mailExtra=extras.getString("email");
+        String passExtra=extras.getString("password");
 
         EditText pass = (EditText) findViewById(R.id.PasswordM);
 
-        TextView t1=(TextView)findViewById(R.id.textUsername);
-        TextView t2=(TextView)findViewById(R.id.textEmail);
-        TextView t3=(TextView)findViewById(R.id.textPassword);
+        textUsername=(TextView)findViewById(R.id.textUsername);
+        textemail=(TextView)findViewById(R.id.textEmail);
+        textepassword=(TextView)findViewById(R.id.textPassword);
 
-        t1.setText(usernameExtra);
-        t2.setText(mailExtra);
-        t3.setText(passExtra);
+        textUsername.setText(usernameExtra);
+        textemail.setText(mailExtra);
+        textepassword.setText(passExtra);
 
 
-        btn_enregistrerModifCompte = (Button) findViewById(R.id.ModifCompte);
 
-        //definition bouton direction vers la page de modification du compte
-        btn_enregistrerModifCompte.setOnClickListener(v->{
-            Intent it = new Intent(this,ModifCompteActivity.class);
-            it.putExtra("idC", idExtra);
-            it.putExtra("username", usernameExtra);
-            it.putExtra("mail", mailExtra);
-            it.putExtra("password", passExtra);
-            startActivity(it);
-
-        });
 
     }
 

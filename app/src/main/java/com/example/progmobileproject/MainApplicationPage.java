@@ -41,6 +41,8 @@ public class MainApplicationPage extends AppCompatActivity {
         list_films.setOnItemClickListener(//lambda expression avec l'id du film que l'utilisateur a choisit
                 (parent, view, position, id) -> {
                     Intent it = new Intent(this,ViewFilmActivity.class);
+                    it.putExtra("filmId",id+1);
+                    startActivity(it);
                 }
         );
 
