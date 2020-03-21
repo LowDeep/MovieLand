@@ -25,6 +25,8 @@
     <string name="creerCompte">Creer un compte</string>
     <string name="enregistrer">S\'enregistrer</string>
     <string name="ajouter">Ajouter</string>
+    <string name="takephoto">Prendre une photo</string>
+    <string name="showimage">Mes images</string>
 
 
     <!--affiche compte-->

@@ -31,6 +31,8 @@
     <string name="dateerror">Enter a valid date</string>
     <string name ="passworderror">Enter the same password</string>
     <string name="ajouter">Add</string>
+    <string name="takephoto">Take a photo</string>
+    <string name="showimage">Show my images</string>
 
 
     <!--affiche compte-->
