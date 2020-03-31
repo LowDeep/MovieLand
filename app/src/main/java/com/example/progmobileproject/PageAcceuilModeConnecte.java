@@ -61,6 +61,17 @@ public class PageAcceuilModeConnecte extends AppCompatActivity {
         FilmAdapter adapter = new FilmAdapter(this, listefilms);
         listview.setAdapter(adapter);
 
+
+
+        //quand on clique sur un element de la liste on est rediriger vers son contenu
+        listview.setOnItemClickListener(//lambda expression avec l'id du film que l'utilisateur a choisit
+                (parent, view, position, id) -> {
+                    Intent it = new Intent(this,ViewFilmActivity.class);
+                    it.putExtra("filmId",id+1);
+                    startActivity(it);
+                }
+        );
+
         ajouter_film = (Button)findViewById(R.id.ajout_film_button);
         ajouter_film.setOnClickListener(v -> {
             Intent it = new Intent(this,AddFilmActivity.class);

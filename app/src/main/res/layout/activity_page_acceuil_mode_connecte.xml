@@ -5,36 +5,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PageAcceuilModeConnecte"
-    >
+    android:background="@color/colorWhite">
+
+
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/colorback"
+        >
 
+        <TextView
+
+            android:layout_marginLeft="10dp"
+            android:layout_width="270dp"
+            android:layout_height="70dp"
+            android:text="MovieLand"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:paddingLeft="10dp"
+            android:textColor="@color/colortitle"
+            android:textSize="50dp"
+            android:textStyle="italic|bold"/>
 
         <Button
             android:id="@+id/ajout_film_button"
-            android:layout_width="wrap_content"
+            android:layout_width="145dp"
             android:layout_height="wrap_content"
-            android:text="@string/ajout_film_bouton"
+            android:layout_marginLeft="@android:dimen/thumbnail_width"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="@android:dimen/thumbnail_width"/>
+            android:layout_gravity="right"
+
+            android:background="@color/colorbuttons"
+            android:text="@string/ajout_film_bouton"
+            android:textColor="@color/colorBlack" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/liste_films_ajoute"
             android:layout_margin="20dp"
-            android:textSize="20sp"
-            android:textColor="#000"
-            android:textStyle="bold"/>
+            android:text="@string/liste_films_ajoute"
+            android:textColor="@color/colortitle"
+            android:layout_gravity="center"
+
+            android:textSize="25dp"
+            android:textStyle="bold"
+            />
+
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/user_list_films"
             android:layout_margin="10dp"
+            android:background="@color/coloritems"
         />
 
     </LinearLayout>

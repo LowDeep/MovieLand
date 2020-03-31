@@ -27,7 +27,7 @@
     <string name="ajouter">Ajouter</string>
     <string name="takephoto">Prendre une photo</string>
     <string name="showimage">Mes images</string>
-
+    <string name="modifier">Modifier</string>
 
     <!--affiche compte-->
     <string name="afficheCompte">Mon compte</string>
@@ -38,7 +38,8 @@
     <string name="dateerror">Entrer une date valide</string>
     <string name="passworderror">Utiliser un mot de passe identique</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="ancienmdp">Ancien mot de passe</string>
+    <string name="modifmdp">Entrez vote mot de passe</string>
 
 </resources>

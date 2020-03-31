@@ -17,7 +17,7 @@ public class Film {
     private String titre;
     private int annee;
     private String genre;
-    private ArrayList<String> acteurs;
+    private String acteurs;
     private String resume;
     private String pathImage;
     private String username;
@@ -30,7 +30,7 @@ public class Film {
         id = cursor.getLong(cursor.getColumnIndex("id"));
         titre = cursor.getString(cursor.getColumnIndex("titre"));
         annee = cursor.getInt(cursor.getColumnIndex("annee"));
-       // acteurs = cursor.getString(cursor.getColumnIndex("acteurs")).split(";");
+        acteurs = cursor.getString(cursor.getColumnIndex("acteurs"));
         resume = cursor.getString(cursor.getColumnIndex("resume"));
         genre = cursor.getString(cursor.getColumnIndex("genre"));
         pathImage = cursor.getString(cursor.getColumnIndex("pathImage"));
@@ -42,7 +42,7 @@ public class Film {
     }
 
     //constructeur 3 pour creer un film avec des valeurs depuis des string
-    public Film(String titre, int annee, ArrayList<String> acteurs, String resume, String genre, String pathImage, String username){
+    public Film(String titre, int annee, String acteurs, String resume, String genre, String pathImage, String username){
        // this.id = id;
         this.titre = titre;
         this.annee = annee;
@@ -73,7 +73,7 @@ public class Film {
         return genre;
     }
 
-    public ArrayList<String> getActeurs() {
+    public String getActeurs() {
         return acteurs;
     }
 
@@ -162,12 +162,12 @@ public class Film {
         ContentValues values = new ContentValues();
         values.put("titre",this.getTitre());
         values.put("genre",this.getGenre());
-        values.put("acteurs",this.getActeurs().toString());
+        values.put("acteurs",this.getActeurs());
         values.put("annee",this.getAnnee());
         values.put("resume",this.getResume());
         values.put("username",this.getUsername());
 
-        //Log.i("values INSERT",values.toString());
+        Log.i("values INSERT",values.toString());
 
         //insertion
         LocalSQLOpenHelper helper = new LocalSQLOpenHelper(context);

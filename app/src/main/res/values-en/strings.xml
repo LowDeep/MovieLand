@@ -34,9 +34,14 @@
     <string name="takephoto">Take a photo</string>
     <string name="showimage">Show my images</string>
 
+    <string name="modifier">Modify</string>
+
 
     <!--affiche compte-->
     <string name="afficheCompte">My account</string>
     <string name="modifierCompte">Change my information</string>
+
+    <string name="ancienmdp">Old password</string>
+    <string name="modifmdp">Entry new password</string>
 
 </resources>

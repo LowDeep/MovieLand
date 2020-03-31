@@ -1,14 +1,18 @@
 package com.example.progmobileproject;
 
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -44,10 +48,10 @@ public class InscriptionActivity extends AppCompatActivity {
     Button bouton_showimage;
 
     private ImageView mimageview;
-    private static final int REQUEST_IMAGE_CAPTURE=101;
+    private static final int REQUEST_IMAGE_CAPTURE = 101;
 
-    String currentImagePath=null;
-    private static final int IMAGE_REQUEST=1;
+    String currentImagePath = null;
+    private static final int IMAGE_REQUEST = 1;
     Uri uriImage;
 
 
@@ -61,43 +65,57 @@ public class InscriptionActivity extends AppCompatActivity {
         editText_validate_password = findViewById(R.id.textValidatePassword);
         editText_username = findViewById(R.id.textUsername);
         bouton_enregistrer = findViewById(R.id.bouton_enregistrer);
-        bouton_takeimage=findViewById(R.id.bouton_takephoto);
-        bouton_showimage=findViewById(R.id.bouton_showimage);
+        bouton_takeimage = findViewById(R.id.bouton_takephoto);
+        bouton_showimage = findViewById(R.id.bouton_showimage);
 
-        awesomeValidation= new AwesomeValidation(ValidationStyle.BASIC);
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
         //mimageview=findViewById(R.id.imageView);
 
         //adding validation to edittexts
         awesomeValidation.addValidation(this, R.id.textEmail, Patterns.EMAIL_ADDRESS, R.string.emailerror);
-        awesomeValidation.addValidation(this,R.id.textValidatePassword,R.id.textPassword,R.string.passworderror);
+        awesomeValidation.addValidation(this, R.id.textValidatePassword, R.id.textPassword, R.string.passworderror);
 
         bouton_enregistrer.setOnClickListener(v -> {
             //si on clique on verifie que le formulaire est bien
-          if( submitForm()){
-           Intent it = new Intent(this,ConnectionActivity.class);
-           //on cree un compte et on l'enregistre dans la base de donnée
-              Compte account = new Compte(editText_username.getText().toString(),
-                                            editText_email.getText().toString(),
-                                            editText_password.getText().toString());
-              account.insererCompte(this);
+            if (submitForm()) {
+                Intent it = new Intent(this, ConnectionActivity.class);
+                //on cree un compte et on l'enregistre dans la base de donnée
+                Compte account = new Compte(editText_username.getText().toString(),
+                        editText_email.getText().toString(),
+                        editText_password.getText().toString());
+                account.insererCompte(this);
 
-          startActivity(it);
-          }
+                startActivity(it);
+            }
         });
 
-        bouton_takeimage.setOnClickListener(v->{
+        bouton_takeimage.setOnClickListener(v -> {
+            //if request runtime permission already checked
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED ||
+                        checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                    //permissions not enabled request it
+                    String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                    //show popup to request permissions
+                    requestPermissions(permissions, REQUEST_IMAGE_CAPTURE);
+                }else{
+                    //permission already granted
+                    captureImage();
+                }
+            }else{
+                // system os < marshmallow
+                captureImage();
+            }
 
-            captureImage();
         });
 
-        bouton_showimage.setOnClickListener(v->{
-                showImage(this.getCurrentFocus());
+        bouton_showimage.setOnClickListener(v -> {
+            showImage(this.getCurrentFocus());
         });
 
 
     }
-
 
 
     private boolean submitForm() {
@@ -106,58 +124,72 @@ public class InscriptionActivity extends AppCompatActivity {
         if (awesomeValidation.validate()) {
             Toast.makeText(this, "Validation Successfull", Toast.LENGTH_LONG).show();
             return true;
-            }return false;
+        }
+        return false;
     }
 
-    public void takePicture(){
-        Intent imageTakeIntent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (imageTakeIntent.resolveActivity(getPackageManager())!=null){
+    public void takePicture() {
+        Intent imageTakeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (imageTakeIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(imageTakeIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode==REQUEST_IMAGE_CAPTURE&& resultCode==RESULT_OK) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             mimageview.setImageBitmap(imageBitmap);
         }
     }
 
-    public void captureImage(){
-        Intent cameraIntent =new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (cameraIntent.resolveActivity(getPackageManager())!=null){
-            File imageFile=null;
+    public void captureImage() {
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+            File imageFile = null;
             try {
-                imageFile=getImageFile();
+                imageFile = getImageFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            if (imageFile!=null){
-                Uri imageUri= FileProvider.getUriForFile(this,"com.example.android.fileprovider", imageFile);
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
+            if (imageFile != null) {
+                Uri imageUri = FileProvider.getUriForFile(this, "com.example.android.fileprovider", imageFile);
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                 startActivityForResult(cameraIntent, IMAGE_REQUEST);
             }
 
         }
     }
 
-    public void showImage(View view){
-        Intent intent=new Intent(this,ShowImage.class);
-        intent.putExtra("image_path",currentImagePath);
+    public void showImage(View view) {
+        Intent intent = new Intent(this, ShowImage.class);
+        intent.putExtra("image_path", currentImagePath);
         startActivity(intent);
     }
 
-    private File getImageFile()throws IOException {
-        String timestamp=new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageName="jpg_"+timestamp+"_";
-        File storageDir=getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+    private File getImageFile() throws IOException {
+        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageName = "jpg_" + timestamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 
-        File imageFile=File.createTempFile(imageName, ".jpg", storageDir);
-        currentImagePath=imageFile.getAbsolutePath();
+        File imageFile = File.createTempFile(imageName, ".jpg", storageDir);
+        currentImagePath = imageFile.getAbsolutePath();
         return imageFile;
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_IMAGE_CAPTURE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    takePicture();
+                } else {
+                    Toast.makeText(this, "Permission denied...", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 }

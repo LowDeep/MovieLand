@@ -4,42 +4,60 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBlack"
+        android:background="@color/colorback"
         android:gravity="center"
         android:orientation="vertical"
-    tools:context=".ModifCompteActivity">>
+    tools:context=".ModifCompteActivity">
+
+
+        <TextView
+
+            android:layout_marginLeft="10dp"
+            android:layout_width="270dp"
+            android:layout_height="70dp"
+            android:text="MovieLand"
+            android:layout_marginTop="-90dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:paddingLeft="10dp"
+            android:textColor="@color/colortitle"
+            android:textSize="50dp"
+            android:textStyle="italic|bold"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
+            android:layout_marginTop="100dp"
             android:text="@string/modifier_mes_informations"
-            android:textColor="@color/colorWhite"
-            android:textSize="22dp" />
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            android:textSize="25dp" />
 
         <EditText
             android:id="@+id/EmailM"
             android:layout_width="250dp"
             android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/colorGris"
+            android:layout_marginTop="25dp"
+            android:background="@color/colorGrisClair"
             android:hint="Email"
 
             android:inputType="textEmailAddress"
             android:paddingLeft="10dp"
-            android:textColorHint="@color/colorGrisClair"
-            android:textSize="22dp" />
+            android:textColorHint="@color/colorGris"
+            android:textSize="20dp" />
+
         <EditText
             android:id="@+id/PasswordAncien"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
-            android:background="@color/colorGris"
-            android:hint="Ancien password"
+            android:background="@color/colorGrisClair"
+            android:hint="@string/ancienmdp"
             android:inputType="textPassword"
             android:paddingLeft="10dp"
-            android:textColorHint="@color/colorGrisClair"
-            android:textSize="22dp" />
+            android:textColorHint="@color/colorGris"
+            android:textSize="20dp" />
 
 
         <EditText
@@ -47,22 +65,26 @@
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
-            android:background="@color/colorGris"
-            android:hint="password"
+            android:background="@color/colorGrisClair"
+            android:hint="@string/modifmdp"
             android:inputType="textPassword"
             android:paddingLeft="10dp"
-            android:textColorHint="@color/colorGrisClair"
-            android:textSize="22dp" />
+            android:textColorHint="@color/colorGris"
+            android:textSize="16dp"
+
+            />
 
         <Button
             android:id="@+id/EnregistrerM"
             android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginTop="10dp"
-            android:background="@color/colorRose"
+            android:background="@color/colorbuttons"
             android:text="Enregistrer les modifications"
-            android:textColor="@color/colorWhite"
-            android:textSize="22dp" />
+            android:textColor="@color/colorBlack"
+            android:textSize="22dp"
+
+          />
 
 
     </LinearLayout>
