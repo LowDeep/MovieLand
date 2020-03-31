@@ -5,17 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="@color/colorBlack"
+    android:background="@color/colorback"
     android:orientation="vertical"
     tools:context=".AfficheCompteActivity">
+
+    <TextView
+
+        android:layout_marginLeft="10dp"
+        android:layout_width="270dp"
+        android:layout_height="70dp"
+        android:text="MovieLand"
+        android:layout_marginTop="-100dp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:paddingLeft="10dp"
+        android:background="@color/colorWhite"
+        android:textColor="@color/colortitle"
+        android:textSize="50dp"
+        android:textStyle="italic|bold"/>
 
      <TextView
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:paddingLeft="10dp"
         android:text="@string/afficheCompte"
-        android:textColor="@color/colorWhite"
-        android:textSize="22dp" />
+         android:textAlignment="center"
+         android:layout_marginTop="30dp"
+        android:textColor="@color/colorBlack"
+         android:textStyle="bold"
+        android:textSize="25dp" />
 
     <TextView
         android:id="@+id/textUsername"
@@ -23,7 +41,8 @@
         android:layout_height="50dp"
         android:paddingLeft="10dp"
         android:text="@string/nomUtilisateur"
-        android:textColor="@color/colorWhite"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/colorGris"
         android:textSize="22dp" />
 
     <TextView
@@ -32,7 +51,8 @@
         android:layout_height="50dp"
         android:paddingLeft="10dp"
         android:text="@string/email"
-        android:textColor="@color/colorWhite"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorGris"
         android:textSize="22dp" />
 
     <TextView
@@ -40,8 +60,9 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:paddingLeft="10dp"
+        android:layout_marginTop="20dp"
         android:text="@string/password"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorGris"
         android:textSize="22dp" />
 
 

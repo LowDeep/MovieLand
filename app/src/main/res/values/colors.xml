@@ -8,5 +8,14 @@
     <color name="colorGris">#6e6e6e</color>
     <color name="colorBlack">#2b2b2b</color>
     <color name="colorRose">#ff59ba</color>
+    <color name="colorbeigeorange">#e4c170</color>
+    <color name="colororangeclair">#fab108</color>
+    <color name="colorbeige">#e9d6ab</color>
+    <color name="colorbeigegris">#ded5c1</color>
+    <color name="colororange">#f77e13</color>
+    <color name="colorback">#e9e0d8</color>
+    <color name="coloritems">#f7ede4</color>
+    <color name="colortitle">#ea8d36</color>
+    <color name="colorbuttons">#e9cdb1</color>
 
 </resources>

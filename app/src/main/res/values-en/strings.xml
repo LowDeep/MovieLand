@@ -39,4 +39,7 @@
     <string name="afficheCompte">My account</string>
     <string name="modifierCompte">Change my information</string>
 
+    <string name="ancienmdp">Old password</string>
+    <string name="modifmdp">Entry new password</string>
+
 </resources>

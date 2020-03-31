@@ -38,4 +38,7 @@
     <string name="dateerror">Entrer une date valide</string>
     <string name="passworderror">Utiliser un mot de passe identique</string>
 
+    <string name="ancienmdp">Ancien mot de passe</string>
+    <string name="modifmdp">Entrer le nouveau mot de passe</string>
+
 </resources>
