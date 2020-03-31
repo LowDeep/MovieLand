@@ -41,4 +41,9 @@
     <string name="ancienmdp">Ancien mot de passe</string>
     <string name="modifmdp">Entrer le nouveau mot de passe</string>
 
+    <string name="enregistremodif">Enregistrer les modifications</string>
+
+    <string name="infos"><![CDATA[Visualiser la bande d\'annonce]]></string>
+
+
 </resources>
