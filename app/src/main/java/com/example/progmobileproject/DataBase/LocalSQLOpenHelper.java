@@ -16,7 +16,7 @@ public class LocalSQLOpenHelper extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db) {
 
 
-        String create_table_accounts = "CREATE TABLE accounts ( username TEXT PRIMARY KEY, email TEXT , password TEXT)";
+        String create_table_accounts = "CREATE TABLE accounts ( username TEXT PRIMARY KEY, email TEXT , password TEXT,pathImage TEXT)";
         String create_table_movies = "CREATE TABLE movies ( id INTEGER PRIMARY KEY ,titre TEXT , annee INTEGER , acteurs TEXT,resume TEXT , genre TEXT , pathImage BLOB, username String)";
 
 
