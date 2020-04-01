@@ -3,8 +3,11 @@ package com.example.progmobileproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -52,6 +55,16 @@ public class ViewFilmActivity extends AppCompatActivity {
         texteResumeFilm.setText(film.getResume());
 
 
+        Button navig =findViewById(R.id.Infos);
+        navig.setOnClickListener(v -> {
+                String url = "https://www.youtube.com/results?search_query="+film.getTitre().toString();
+                Intent intent1 = new Intent( Intent.ACTION_VIEW, Uri.parse( url ) );
+                startActivity(intent1);
+        });
+
+
+
+
 
 
 
@@ -82,6 +95,7 @@ public class ViewFilmActivity extends AppCompatActivity {
         }
 */
     }
+
 
     @Override
     protected void onPause() {

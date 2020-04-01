@@ -44,4 +44,8 @@
     <string name="ancienmdp">Old password</string>
     <string name="modifmdp">Entry new password</string>
 
+    <string name="enregistremodif">Save changes</string>
+
+    <string name="infos">Show trailer</string>
+
 </resources>
