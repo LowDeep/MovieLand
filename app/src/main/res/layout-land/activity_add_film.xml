@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorback"
+    >
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp">
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_marginLeft="10dp"
+            android:layout_width="270dp"
+            android:layout_height="70dp"
+            android:text="MovieLand"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:paddingLeft="10dp"
+            android:background="@color/colorWhite"
+            android:textColor="@color/colortitle"
+            android:textSize="50dp"
+            android:textStyle="italic|bold"/>
+
+        <!-- ZONE TITRE DU FILM -->
+        <TextView
+            android:id="@+id/textitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/titre_du_film_ADD"
+            android:textSize="18dp"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            android:layout_below="@+id/title"/>
+
+        <!-- ZONE DE GENRE -->
+        <TextView
+            android:id="@+id/textgenre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorBlack"
+            android:text="@string/genre_ADD"
+            android:textSize="18dp"
+            android:layout_below="@+id/textitle"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/addFilm_genre"
+            android:inputType="text"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorGrisClair"
+            android:paddingHorizontal="10dp"
+            android:paddingLeft="10dp"
+            android:textSize="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textitle"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/textgenre"
+            android:layout_marginRight="20dp"
+
+           />
+
+        <!-- ZONE DE LANNEE DE SORTIE -->
+        <TextView
+            android:id="@+id/textsortie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:layout_marginTop="10dp"
+            android:text="@string/annee_de_sortie_ADD"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/textgenre"
+            />
+        <EditText
+            android:id="@+id/addFilm_annee"
+            android:inputType="number"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorGrisClair"
+            android:paddingHorizontal="10dp"
+            android:paddingLeft="10dp"
+            android:textSize="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textgenre"
+            android:layout_toRightOf="@+id/textsortie"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
+
+
+
+
+        <!-- ZONE ACTEURS -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/textsortie"
+            >
+            <TextView
+                android:id="@+id/textacteurs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/acteurs_ADD"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"
+                />
+            <!--</RelativeLayout>-->
+        <!--<RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/addFilm_addActeurLayout"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+        </RelativeLayout>-->
+        <!--ZONE DU RESUME -->
+        <TextView
+            android:id="@+id/textresume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resume_ADD"
+            android:textColor="@color/colorBlack"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/textacteurs"
+
+           />
+
+        <EditText
+            android:id="@+id/addDVD_resume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorGrisClair"
+            android:inputType="textCapSentences|textMultiLine"
+            android:minLines="4"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:paddingHorizontal="10dp"
+            android:paddingLeft="10dp"
+            android:textSize="14dp"
+            android:layout_below="@+id/textacteurs"
+            android:layout_toRightOf="@+id/textresume"/>
+
+        <!-- ZONE DU BOUTON OK -->
+
+         <!--   android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation ="vertical"
+            android:gravity ="right">-->
+
+            <Button
+                android:id="@+id/addDVD_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/ajouter"
+                android:layout_marginTop="50dp"
+                android:textStyle="bold"
+                android:background="@color/colorbuttons"
+                android:textColor="@color/colorBlack"
+                android:textSize="18dp"
+                android:layout_below="@+id/textresume"
+                android:layout_alignParentRight="true"/>
+
+            <Button
+                android:id="@+id/addFilm_addActeur"
+                android:layout_width="78dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="90dp"
+                android:text="+"
+
+                android:textColor="@color/colorGrisClair"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+        </>
+
+        <EditText
+            android:id="@+id/addFilm_titre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/colorGrisClair"
+            android:paddingHorizontal="10dp"
+            android:paddingLeft="10dp"
+            android:textSize="18dp"
+            android:layout_toRightOf="@+id/textitle"
+            android:layout_below="@+id/title"
+            />
+
+
+    </RelativeLayout>
+</ScrollView>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/colorback"
+    android:orientation="vertical"
+    tools:context=".ConnectionActivity">
+
+    <TextView
+
+        android:layout_marginLeft="10dp"
+        android:layout_width="270dp"
+        android:layout_height="70dp"
+        android:text="MovieLand"
+        android:layout_marginTop="-40dp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:paddingLeft="10dp"
+        android:background="@color/colorWhite"
+        android:textColor="@color/colortitle"
+        android:textSize="50dp"
+        android:textStyle="italic|bold"/>
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:id="@+id/PseudoC"
+        android:hint="@string/nomUtilisateur"
+        android:paddingLeft="10dp"
+        android:paddingHorizontal="10dp"
+        android:background="@color/colorGrisClair"
+        android:layout_marginTop="20dp"
+        android:textColorHint="@color/colorGris"
+        android:textSize="22dp"/>
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:id="@+id/PasswordC"
+        android:hint="@string/password"
+        android:paddingLeft="10dp"
+        android:background="@color/colorGrisClair"
+        android:textColorHint="@color/colorGris"
+        android:layout_marginTop="10dp"
+        android:textSize="22dp"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:id="@+id/Connexion_connection"
+        android:text="@string/connection"
+        android:background="@color/colorbuttons"
+        android:textSize="22dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorBlack"/>
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:id="@+id/Inscription_connection"
+        android:text="@string/inscription"
+        android:background="@color/colorbuttons"
+        android:textSize="22dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorBlack"/>
+
+
+
+
+</LinearLayout>
