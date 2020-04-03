@@ -74,13 +74,14 @@ public class AddFilmActivity extends AppCompatActivity {
 
         //action bouton ajouter film
         btnOk.setOnClickListener(v -> {
+
             ArrayList<String>  actorsList = new ArrayList<>();
             for (EditText acteur : acteursArrayList){
                     actorsList.add(acteur.getText().toString());
                }
-               // Log.i("Acteur", acteur.getText().toString());
 
-            Log.i("actreu",actorsList.toString());//affiche mauvais truc
+
+           Log.i("acteurs",actorsList.toString());//affiche mauvais truc
 
             Intent it = new Intent(this,PageAcceuilModeConnecte.class);
             Bundle extras = getIntent().getExtras();
@@ -95,16 +96,17 @@ public class AddFilmActivity extends AppCompatActivity {
 
             Film movie = new Film(editTitreFilm.getText().toString(),
                     Integer.valueOf(editAnnee.getText().toString()),
-                    actorsList ,//Acteurs savedInstanceState.getStringArray("acteurs")
+                    actorsList.toString() ,//Acteurs savedInstanceState.getStringArray("acteurs")
                     editResume.getText().toString(),
                     editGenre.getText().toString(),
                     null,
                     userName);//pathimage
 
+            Log.i("ACTEURS MOVIE",movie.getActeurs());
 
 
             movie.insert(this);
-            startActivity(it);
+           startActivity(it);
 
         });
 

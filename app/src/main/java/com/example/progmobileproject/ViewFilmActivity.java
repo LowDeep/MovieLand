@@ -35,7 +35,7 @@ public class ViewFilmActivity extends AppCompatActivity {
         texteTitreFilm = (TextView) findViewById(R.id.titreFilm);
         texteAnneeFilm = (TextView) findViewById(R.id.anneeFilm);
         texteGenreFilm = (TextView) findViewById(R.id.genreFilm);
-        //texteActeurs = (TextView) findViewById(R.id.texteActeurs);
+        texteActeurs = (TextView) findViewById(R.id.acteursFilm);
         texteResumeFilm = (TextView) findViewById(R.id.resumeFilm);
 
         Intent intent = getIntent();
@@ -46,10 +46,12 @@ public class ViewFilmActivity extends AppCompatActivity {
         //recuperer le dvd depuis la bdd
         film = Film.getFilm(this, filmId);
 
-       texteTitreFilm.setText(film.getTitre().toString());
+        Log.i("valeurs film",film.getActeurs());
+
+        texteTitreFilm.setText(film.getTitre().toString());
         texteAnneeFilm.setText(String.valueOf(film.getAnnee()));
         texteGenreFilm.setText(film.getGenre());
-//        texteActeurs.setText(film.getActeurs().toString());
+        texteActeurs.setText(film.getActeurs());
         texteResumeFilm.setText(film.getResume());
 
 
@@ -82,13 +84,16 @@ public class ViewFilmActivity extends AppCompatActivity {
         texteAnneeFilm.setText(String.format(getString(R.string.annee_de_sortie),film.getAnnee()));
         texteGenreFilm.setText(String.format(getString(R.string.genre),film.getGenre()));
         texteResumeFilm.setText(String.format(getString(R.string.resume),film.getResume()));
+        String acteurs="";
         //ON RECUPERE LA LISTE DES ACTEURS
-        /*for(String acteur : film.getActeur()){
-            TextView tv = new TextView(this);
+        /*for(String acteur : film.getActeurs()){
+            /*TextView tv = new TextView(this);
             //on recupere l'acteur on le met dans un tv puis on lajoute au layout acteurs pour l'afficher
             tv.setText(String.format(getString(R.string.acteurs),acteur));
             layoutActeurs.addView(tv);
-        }*/
+            acteurs+=acteur+"\n";
+        }
+*/
     }
 
 

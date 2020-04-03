@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,6 +37,7 @@ public class PageAcceuilModeConnecte extends AppCompatActivity {
     ListView listview ;
 
 
+    public static final String SHARED_PREFS="sharedPrefs";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +62,17 @@ public class PageAcceuilModeConnecte extends AppCompatActivity {
 
         FilmAdapter adapter = new FilmAdapter(this, listefilms);
         listview.setAdapter(adapter);
+
+
+
+        //quand on clique sur un element de la liste on est rediriger vers son contenu
+        listview.setOnItemClickListener(//lambda expression avec l'id du film que l'utilisateur a choisit
+                (parent, view, position, id) -> {
+                    Intent it = new Intent(this,ViewFilmActivity.class);
+                    it.putExtra("filmId",id+1);
+                    startActivity(it);
+                }
+        );
 
         ajouter_film = (Button)findViewById(R.id.ajout_film_button);
         ajouter_film.setOnClickListener(v -> {
@@ -106,6 +119,11 @@ public class PageAcceuilModeConnecte extends AppCompatActivity {
                 return true;
             case R.id.action_deconnection:
                 it = new Intent(this,MainApplicationPage.class);
+
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_WORLD_READABLE);
+                SharedPreferences.Editor  editor = sharedPreferences.edit();
+                editor.clear();
+
                startActivity(it);
                 return true;
             default:

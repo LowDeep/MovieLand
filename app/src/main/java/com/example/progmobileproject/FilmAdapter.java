@@ -69,14 +69,8 @@ public class FilmAdapter extends ArrayAdapter<Film> {
         myGenre.setText(listefilms.get(position).getGenre());
         myResume.setText(listefilms.get(position).getResume());
 
-        /*
-        item.setOnClickListener(v -> {
-            Intent it = new Intent(context, ViewFilmActivity.class);
-            //ICI??
 
-                }
 
-        );*/
         return item;
     }
 
