@@ -181,7 +181,7 @@
                 android:textColor="@color/colorGrisClair"
                 android:textSize="15dp"
                 android:textStyle="bold" />
-        </>
+        </RelativeLayout>
 
         <EditText
             android:id="@+id/addFilm_titre"

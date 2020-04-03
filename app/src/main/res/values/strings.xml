@@ -46,5 +46,7 @@
 
     <string name="infos"><![CDATA[Visualiser la bande d\'annonce]]></string>
 
+    <string name="notification">Revenez vite pour découvrir les nouveautés ou bien pour en partager ! :)</string>
+
 
 </resources>

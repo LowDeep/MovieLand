@@ -2,6 +2,8 @@ package com.example.progmobileproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -10,19 +12,25 @@ import android.widget.ListView;
 
 import com.example.progmobileproject.Classes.Film;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainApplicationPage extends AppCompatActivity {
 
     ImageView logo_connection;
     ListView list_films;
     ArrayList<Film> listeFilms;
+    static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_application_layout);
 
+        //programmation d'une notification
+        myAlarm();
 
         logo_connection = (ImageView)findViewById(R.id.LogoConnexion);
         list_films = (ListView)findViewById(R.id.list_films);
@@ -66,6 +74,31 @@ public class MainApplicationPage extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+    }
+
+    //on programme une notification à 19h
+    public void myAlarm() {
+
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(Calendar.HOUR_OF_DAY, 18);
+        calendar.set(Calendar.MINUTE,56);
+        System.out.println(sdf.format(calendar.getTime()));
+
+
+
+        if (calendar.getTime().compareTo(new Date()) < 0)
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+
+        Intent intent = new Intent(getApplicationContext(), NotificationReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        if (alarmManager != null) {
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
+        }
 
     }
 }
