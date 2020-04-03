@@ -5,17 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.progmobileproject.Classes.Compte;
 import com.example.progmobileproject.Classes.Film;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import static com.example.progmobileproject.ConnectionActivity.SHARED_PREFS;
 
 public class MainApplicationPage extends AppCompatActivity {
 
@@ -45,6 +50,9 @@ public class MainApplicationPage extends AppCompatActivity {
 
 
 
+        verification_connection();
+
+
         //quand on clique sur un element de la liste on est rediriger vers son contenu
         list_films.setOnItemClickListener(//lambda expression avec l'id du film que l'utilisateur a choisit
                 (parent, view, position, id) -> {
@@ -60,6 +68,25 @@ public class MainApplicationPage extends AppCompatActivity {
             Intent it = new Intent(this , ConnectionActivity.class);
             startActivity(it);
         });
+
+    }
+
+    //si l'utilisateur etait deja connecte grace au preferences on recupere qu'il etait deja connecte et on le connecte directement
+    private void verification_connection() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String username = preferences.getString("username", "");
+        Boolean connected = preferences.getBoolean("Connected",false);
+
+        if(connected){
+            Intent it = new Intent(this, PageAcceuilModeConnecte.class);
+            Compte c = Compte.getAccoutByUsername(this,username);
+            it.putExtra("username",c.getUsername());
+            it.putExtra("email",c.getEmail());
+            it.putExtra("password",c.getPassword());
+
+
+            startActivity(it);
+        }
 
     }
 

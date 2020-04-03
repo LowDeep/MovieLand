@@ -24,6 +24,7 @@
         android:textColor="@color/colortitle"
         android:textSize="50dp"
         android:textStyle="italic|bold"/>
+
     <ImageView
         android:id="@+id/LogoConnexion"
         android:layout_width="match_parent"

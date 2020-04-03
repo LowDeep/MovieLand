@@ -9,37 +9,37 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_marginLeft="10dp"
         android:layout_width="270dp"
         android:layout_height="70dp"
-        android:text="MovieLand"
-        android:layout_marginTop="30dp"
         android:layout_gravity="center"
-        android:textAlignment="center"
-        android:paddingLeft="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="0dp"
         android:background="@color/colorWhite"
+        android:paddingLeft="10dp"
+        android:text="MovieLand"
+        android:textAlignment="center"
         android:textColor="@color/colortitle"
         android:textSize="50dp"
-        android:textStyle="italic|bold"/>
+        android:textStyle="italic|bold" />
 
     <TextView
         android:id="@+id/titreFilm"
-        android:layout_below="@+id/title"
-        android:text="Titre du film"
-        android:layout_gravity="center_horizontal|top"
-        android:layout_marginTop="15dp"
-
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:layout_below="@+id/title"
+        android:layout_gravity="center_horizontal|top"
+
+        android:layout_marginTop="1dp"
         android:paddingLeft="10dp"
+        android:text="@string/titre_du_film"
         android:textAlignment="center"
         android:textColor="@color/colorBlack"
-        android:textStyle="bold"
-        android:textSize="30dp" />
+        android:textSize="30dp"
+        android:textStyle="bold" />
 
     <TextView
 
-        android:text="Année de sortie"
+        android:text="@string/annee_de_sortie"
         android:id="@+id/anneeFilm"
         android:layout_width="100dp"
         android:layout_height="50dp"
@@ -60,25 +60,37 @@
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@id/anneeFilm"
         android:paddingLeft="10dp"
-        android:text="Genre"
+        android:text="@string/genre"
         android:layout_marginRight="10dp"
+        android:textColor="@color/colorGris"
+        android:textSize="22dp" />
+
+
+    <TextView
+
+        android:id="@+id/acteursFilm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/anneeFilm"
+        android:layout_marginTop="22dp"
+        android:paddingLeft="10dp"
+        android:text="@string/acteurs"
         android:textColor="@color/colorGris"
         android:textSize="22dp" />
 
     <TextView
 
-        android:text="Résumé"
-        android:minLines="5"
-        android:maxLines="20"
         android:id="@+id/resumeFilm"
         android:layout_width="400dp"
         android:layout_height="70dp"
+        android:layout_below="@id/anneeFilm"
+        android:layout_marginTop="75dp"
+        android:maxLines="20"
+        android:minLines="5"
         android:paddingLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:text="@string/resume"
         android:textColor="@color/colorGris"
-        android:textSize="22dp"
-        android:layout_below="@id/anneeFilm"/>
-
+        android:textSize="22dp" />
 
     <Button
         android:id="@+id/Infos"

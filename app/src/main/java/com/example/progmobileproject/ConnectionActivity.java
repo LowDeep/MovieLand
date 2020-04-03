@@ -2,6 +2,7 @@ package com.example.progmobileproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -71,12 +72,13 @@ public class ConnectionActivity extends AppCompatActivity {
     }
 
     public void saveData(){
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_WORLD_READABLE);
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor  editor = sharedPreferences.edit();
 
 
         editor.putString("username",text_username.getText().toString());
         editor.putBoolean("Connected",true);
+        editor.commit();
     }
 
 }

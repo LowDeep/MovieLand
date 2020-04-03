@@ -120,9 +120,12 @@ public class PageAcceuilModeConnecte extends AppCompatActivity {
             case R.id.action_deconnection:
                 it = new Intent(this,MainApplicationPage.class);
 
-                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_WORLD_READABLE);
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,Context.MODE_PRIVATE);
                 SharedPreferences.Editor  editor = sharedPreferences.edit();
-                editor.clear();
+                editor.remove("username");
+                editor.putBoolean("Connected",false);
+                editor.commit();
+
 
                startActivity(it);
                 return true;

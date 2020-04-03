@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">MovieLand</string>
 
-    <string name="titre_du_film">Titre du film : %s</string>
-    <string name="annee_de_sortie">Année de sortie : %d</string>
-    <string name="genre">Genre : %s</string>
-    <string name="acteurs">Acteur: %s</string>
-    <string name="resume">Résumé : %s</string>
+    <string name="titre_du_film">Titre du film : </string>
+    <string name="annee_de_sortie">Année de sortie : </string>
+    <string name="genre">Genre : </string>
+    <string name="acteurs">Acteur: </string>
+    <string name="resume">Résumé : </string>
     <string name="mon_compte">Mon Compte</string>
     <string name="ajout_film_bouton">Ajouter un film</string>
     <string name="deconnection">Déconnexion</string>

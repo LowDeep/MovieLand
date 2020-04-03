@@ -80,10 +80,7 @@ public class ViewFilmActivity extends AppCompatActivity {
         super.onResume();
 
         //INTERNATIONNALISATION des mots
-        texteTitreFilm.setText(String.format(getString(R.string.titre_du_film),film.getTitre()));
-        texteAnneeFilm.setText(String.format(getString(R.string.annee_de_sortie),film.getAnnee()));
-        texteGenreFilm.setText(String.format(getString(R.string.genre),film.getGenre()));
-        texteResumeFilm.setText(String.format(getString(R.string.resume),film.getResume()));
+
         String acteurs="";
         //ON RECUPERE LA LISTE DES ACTEURS
         /*for(String acteur : film.getActeurs()){

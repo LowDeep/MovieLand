@@ -73,7 +73,7 @@ public class Compte {
 
 
 
-    //obtenir dvd depuis son usenrmae et password
+    //obtenir compte depuis son usenrmae et password
     public static Compte getAccoutByUsernamePassword(Context context , String username, String password)
     {
         Compte retour = null;
@@ -84,6 +84,30 @@ public class Compte {
         Cursor cursor = db.query(true,"accounts",
                                 new String[]{"username","email","password"},
                     where,null,null,null,   null,null);
+
+        if(cursor.moveToFirst())
+        {
+            retour = new Compte(cursor);
+        }
+
+        cursor.close();
+        db.close();
+
+        return retour;
+    }
+
+
+    //obtenir compte depuis son usenrmae e
+    public static Compte getAccoutByUsername(Context context , String username)
+    {
+        Compte retour = null;
+        LocalSQLOpenHelper helper = new LocalSQLOpenHelper((context));
+
+        SQLiteDatabase db = helper.getReadableDatabase();
+        String where = "username = '" +username +"'";
+        Cursor cursor = db.query(true,"accounts",
+                new String[]{"username","email","password"},
+                where,null,null,null,   null,null);
 
         if(cursor.moveToFirst())
         {
