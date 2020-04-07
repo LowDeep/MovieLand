@@ -23,6 +23,8 @@ public class NotificationHelper {
         mContext = context;
     }
 
+
+    //classe pour utiliser les notifications, l'utilisateur est notifier chaque jour a 19h
     void createNotification()
     {
 

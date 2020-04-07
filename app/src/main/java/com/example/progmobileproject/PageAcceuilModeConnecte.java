@@ -91,6 +91,8 @@ public class PageAcceuilModeConnecte extends AppCompatActivity {
 
 
 
+    //methodes pour le menu
+
     //menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

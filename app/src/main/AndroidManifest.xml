@@ -17,7 +17,6 @@
             android:enabled="true"
             android:exported="true"></receiver>
 
-        <activity android:name=".ShowImage" />
         <activity android:name=".AfficheCompteActivity" />
         <activity android:name=".ModifCompteActivity" />
         <activity android:name=".ViewFilmActivity" />

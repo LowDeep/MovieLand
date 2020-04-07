@@ -78,6 +78,7 @@ public class ConnectionActivity extends AppCompatActivity {
 
     }
 
+    //shared pref user
     public void saveData(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor  editor = sharedPreferences.edit();

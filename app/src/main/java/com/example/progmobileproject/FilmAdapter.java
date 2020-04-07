@@ -30,6 +30,8 @@ public class FilmAdapter extends ArrayAdapter<Film> {
 
     //int images[];
 
+    //classe pour utiliser la list view des films // adapter
+
     public FilmAdapter(Context c, String title[], String year[], String gender[], String resume[]){
 
         super(c,R.layout.listitem_dvd,R.id.listItemDVD_titre);
