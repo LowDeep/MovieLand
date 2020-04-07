@@ -50,7 +50,6 @@ public class MainApplicationPage extends AppCompatActivity {
 
 
 
-        verification_connection();
 
 
         //quand on clique sur un element de la liste on est rediriger vers son contenu
@@ -71,24 +70,6 @@ public class MainApplicationPage extends AppCompatActivity {
 
     }
 
-    //si l'utilisateur etait deja connecte grace au preferences on recupere qu'il etait deja connecte et on le connecte directement
-    private void verification_connection() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String username = preferences.getString("username", "");
-        Boolean connected = preferences.getBoolean("Connected",false);
-
-        if(connected){
-            Intent it = new Intent(this, PageAcceuilModeConnecte.class);
-            Compte c = Compte.getAccoutByUsername(this,username);
-            it.putExtra("username",c.getUsername());
-            it.putExtra("email",c.getEmail());
-            it.putExtra("password",c.getPassword());
-
-
-            startActivity(it);
-        }
-
-    }
 
     //methode pour commencer une activite qui affiche les infos sur le film entre en parametre
     private void startViewDVDActivity(long filmId)

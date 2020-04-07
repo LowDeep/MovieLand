@@ -34,6 +34,12 @@
          android:textStyle="bold"
         android:textSize="25dp" />
 
+    <ImageView
+        android:id="@+id/imageCompte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_person_black_24dp" />
+
     <TextView
         android:id="@+id/textUsername"
         android:layout_width="250dp"
@@ -64,11 +70,7 @@
         android:textColor="@color/colorGris"
         android:textSize="22dp" />
 
-    <ImageView
-        android:id="@+id/imageCompte"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_person_black_24dp" />
+
 
 
 </LinearLayout>

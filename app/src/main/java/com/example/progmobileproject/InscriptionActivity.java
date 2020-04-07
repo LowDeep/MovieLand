@@ -12,11 +12,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +29,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.progmobileproject.Classes.Compte;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -46,12 +49,10 @@ public class InscriptionActivity extends AppCompatActivity {
 
     Button bouton_enregistrer;
     Button bouton_takeimage;
-    Button bouton_enregistreImage;
 
-    private ImageView imgAffichePhoto;
-    private String photoPath = null;
+    ImageView imageView;
 
-    Uri image_uri;
+   private String pathImage;
 
 
     @Override
@@ -65,8 +66,7 @@ public class InscriptionActivity extends AppCompatActivity {
         editText_username = findViewById(R.id.textUsername);
         bouton_enregistrer = findViewById(R.id.bouton_enregistrer);
         bouton_takeimage=findViewById(R.id.bouton_takephoto);
-      //  bouton_enregistreImage =findViewById(R.id.bouton_Enregimage);
-       // imgAffichePhoto = (ImageView)findViewById(R.id.imgView);
+        imageView = findViewById(R.id.imageView);
 
         awesomeValidation= new AwesomeValidation(ValidationStyle.BASIC);
 
@@ -80,12 +80,20 @@ public class InscriptionActivity extends AppCompatActivity {
             //si on clique on verifie que le formulaire est bien
             if( submitForm()){
                 Intent it = new Intent(this,ConnectionActivity.class);
+                Compte account;
                 //on cree un compte et on l'enregistre dans la base de donnée
-                Compte account = new Compte(editText_username.getText().toString(),
+                if(pathImage == null){ //si il y a pas d'image on cree le compte sans image sinon le cree le compte avec le pathimage
+                    account = new Compte(editText_username.getText().toString(),
                         editText_email.getText().toString(),
-                        editText_password.getText().toString());
-                account.insererCompte(this);
+                        editText_password.getText().toString(),"");}else{
+                    account = new Compte(editText_username.getText().toString(),
+                            editText_email.getText().toString(),
+                            editText_password.getText().toString(),
+                            pathImage);
 
+                }
+                account.insererCompte(this);
+                Log.i("compte path image",account.getPathImage());
                 startActivity(it);
             }
         });
@@ -104,11 +112,15 @@ public class InscriptionActivity extends AppCompatActivity {
                     requestPermissions(permissions, PERMISSION_CODE);
                 }else{
                     //permission already granted
-                    openCamera();
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent,0);
+
                 }
             }else{
                 // system os < marshmallow
-                openCamera();
+                  Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                  startActivityForResult(intent,0);
+
             }
 
 
@@ -118,40 +130,13 @@ public class InscriptionActivity extends AppCompatActivity {
 
     }
 
-    private void openCamera() {
-
-        //camera intent
-        Intent cameraIntent =  new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        //tester que l'intent peut etre gerer
-        if(cameraIntent.resolveActivity(getPackageManager()) != null){
-            //creer un nom de fichier pour le fichier temporaire, nom unique le nom du fichier on l'instancie à time
-            String time = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            File photoDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-            try {
-                File photoFile = File.createTempFile("photo"+time,".jpg",photoDir);
-                //enregistrer le chemain complet de la photo
-                photoPath = photoFile.getAbsolutePath();
-                //creer l'uri le code pr acceder au fichier
-                Uri photoUri = FileProvider.getUriForFile(InscriptionActivity.this,
-                        InscriptionActivity.this.getApplicationContext().getPackageName()+".provider",
-                        photoFile);
-                //transfert uri vers l'intent pour l'enregistrement photo dans fichier temporaire
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
-                //ouvrir l'activity par rapport à l'intent
-                startActivityForResult(cameraIntent, IMAGE_CAPTURE_CODE);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         //called when imag ewas captured from camera
-        if(resultCode == RESULT_OK){
-            //set the image captured to imageView
-            imgAffichePhoto.setImageURI(image_uri);
-        }
+        super.onActivityResult(requestCode, resultCode, data);
+        Bitmap bitmap = (Bitmap)data.getExtras().get("data");
+        pathImage=BitmapToString(bitmap);
+       // Log.i("Imagepath",pathImage);
     }
 
     @Override
@@ -161,7 +146,9 @@ public class InscriptionActivity extends AppCompatActivity {
             case PERMISSION_CODE:{
                 if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     //permission granted
-                    openCamera();
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent,0);
+
                 }else{
                     Toast.makeText(this,"Permission denied",Toast.LENGTH_SHORT).show();
                 }
@@ -179,7 +166,13 @@ public class InscriptionActivity extends AppCompatActivity {
         }return false;
     }
 
+    //methode pour changer une image en string pour la stocker dans la bdd
+    private String BitmapToString(Bitmap bitmap){
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,50,stream);
+        byte [ ] byte_arr = stream.toByteArray();
+        return android.util.Base64.encodeToString(byte_arr,0);
 
-
+    }
 
 }

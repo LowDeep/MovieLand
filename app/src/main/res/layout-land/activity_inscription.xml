@@ -8,7 +8,13 @@
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".InscriptionActivity">
-
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:srcCompat="@tools:sample/avatars"
+        android:layout_marginLeft="20dp"/>
     <TextView
         android:id="@+id/title"
         android:layout_width="270dp"
@@ -105,19 +111,7 @@
         android:layout_below="@+id/textPassword"
         />
 
-    <Button
-        android:id="@+id/bouton_showimage"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
 
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:background="@color/colorbeige"
-        android:text="@string/showimage"
-        android:textColor="@color/colorBlack"
-        android:textSize="22dp"
-        android:layout_below="@+id/textPassword"
-        android:layout_toRightOf="@+id/bouton_takephoto"/>
 
     <Button
         android:id="@+id/bouton_enregistrer"

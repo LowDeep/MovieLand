@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,6 +34,9 @@ public class AfficheCompteActivity extends AppCompatActivity {
         String usernameExtra=extras.getString("username");
         String mailExtra=extras.getString("email");
         String passExtra=extras.getString("password");
+        String pathImage = extras.getString("pathImage");
+
+        //Log.i("imagePath affiche",pathImage);
 
         EditText pass = (EditText) findViewById(R.id.PasswordM);
 
@@ -45,27 +49,24 @@ public class AfficheCompteActivity extends AppCompatActivity {
         textUsername.setText(usernameExtra);
         textemail.setText(mailExtra);
         textepassword.setText(passExtra);
-
-
-        Compte compte = new Compte();
-
-        //compte = compte.getImagePathByUsername(this,usernameExtra);
-
-        //File imgFile = new  File(compte.getPathImage());
-/*
-        if(imgFile.exists()){
-
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-
-
-            imageCompte.setImageBitmap(myBitmap);
-
-        }*/
+        imageCompte.setImageBitmap(StringToBitmap(pathImage));
 
 
 
 
 
+
+
+        }
+
+
+
+    //methode pour changer un string a un bitmap
+    private Bitmap StringToBitmap(String picture){
+        Bitmap bitmap = null;
+        byte [ ] decoString = android.util.Base64.decode(picture, android.util.Base64.DEFAULT);
+        bitmap = BitmapFactory.decodeByteArray(decoString,0,decoString.length);
+        return bitmap;
 
     }
 

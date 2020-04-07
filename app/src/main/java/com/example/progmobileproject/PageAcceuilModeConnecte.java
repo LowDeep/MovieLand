@@ -33,6 +33,7 @@ public class PageAcceuilModeConnecte extends AppCompatActivity {
     String userName;
     String email;
     String password;
+    String pathImage;
 
     ListView listview ;
 
@@ -48,6 +49,7 @@ public class PageAcceuilModeConnecte extends AppCompatActivity {
             userName = extras.getString("username");
             email = extras.getString("email");
             password = extras.getString("password");
+            pathImage = extras.getString("pathImage");
         }
 
 
@@ -69,7 +71,7 @@ public class PageAcceuilModeConnecte extends AppCompatActivity {
         listview.setOnItemClickListener(//lambda expression avec l'id du film que l'utilisateur a choisit
                 (parent, view, position, id) -> {
                     Intent it = new Intent(this,ViewFilmActivity.class);
-                    it.putExtra("filmId",id+1);
+                    it.putExtra("filmId",id+1); // il faut mettre l'id du film
                     startActivity(it);
                 }
         );
@@ -81,6 +83,7 @@ public class PageAcceuilModeConnecte extends AppCompatActivity {
             it.putExtra("username", userName);
             it.putExtra("email", email);
             it.putExtra("password",password);
+            it.putExtra("pathImage",pathImage);
             startActivity(it);
         });
 
@@ -104,6 +107,7 @@ public class PageAcceuilModeConnecte extends AppCompatActivity {
                 it.putExtra("username",userName);
                 it.putExtra("email",email);
                 it.putExtra("password",password);
+                it.putExtra("pathImage",pathImage);
 
                 startActivity(it);
 
@@ -113,6 +117,7 @@ public class PageAcceuilModeConnecte extends AppCompatActivity {
                 it.putExtra("username",userName);
                 it.putExtra("email",email);
                 it.putExtra("password",password);
+                it.putExtra("pathImage",pathImage);
 
                 startActivity(it);
 

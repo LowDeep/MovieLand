@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.progmobileproject.DataBase.LocalSQLOpenHelper;
@@ -16,12 +17,21 @@ public class Compte {
     private String username;
     private String email;
     private String password;
+    private String pathImage;
+
 
     //contructeur depuis des strings
     public Compte(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+    //contructeur depuis des strings avec path image
+    public Compte(String username, String email, String password,String pathImage) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.pathImage=pathImage;
     }
     //constructeur vide
     public Compte(){};
@@ -32,7 +42,11 @@ public class Compte {
         this.username = cursor.getString(cursor.getColumnIndex("username"));
         this.email = cursor.getString(cursor.getColumnIndex("email"));
         this.password = cursor.getString(cursor.getColumnIndex("password"));
+        this.pathImage = cursor.getString(cursor.getColumnIndex("pathImage"));
 
+    }
+    public String getPathImage() {
+        return pathImage;
     }
 
     public String getUsername() {
@@ -58,6 +72,7 @@ public class Compte {
         values.put("username",this.getUsername());
         values.put("email",this.getEmail());
         values.put("password",this.getPassword());
+        values.put("pathImage",this.getPathImage());
 
 
         //insertion
@@ -65,6 +80,8 @@ public class Compte {
 
         SQLiteDatabase db = helper.getWritableDatabase();
         db.insert("accounts",null,values);
+
+       // Log.i("inscription path", values.get("pathImage").toString());
         db.close();
 
         Toast.makeText(context, "Inscription réussie!",Toast.LENGTH_SHORT).show();
@@ -82,11 +99,12 @@ public class Compte {
         SQLiteDatabase db = helper.getReadableDatabase();
         String where = "username = '" +username +"' and password = '"+password+"'";
         Cursor cursor = db.query(true,"accounts",
-                                new String[]{"username","email","password"},
+                                new String[]{"username","email","password","pathImage"},
                     where,null,null,null,   null,null);
 
         if(cursor.moveToFirst())
         {
+           // Log.i("connexion path",cursor.getString(3).toString());
             retour = new Compte(cursor);
         }
 

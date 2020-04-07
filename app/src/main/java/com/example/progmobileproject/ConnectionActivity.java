@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -29,6 +31,7 @@ public class ConnectionActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
+        verification_connection();
         setContentView(R.layout.activity_connection);
 
         btn_inscription = (Button) findViewById(R.id.Inscription_connection);
@@ -52,9 +55,13 @@ public class ConnectionActivity extends AppCompatActivity {
            Compte compteRecup = compte.getAccoutByUsernamePassword(this,compte.getUsername(),compte.getPassword());
 
             if(compteRecup !=null){
-            it.putExtra("username",compteRecup.getUsername());
-            it.putExtra("email",compteRecup.getEmail());
-            it.putExtra("password",compteRecup.getPassword());
+                it.putExtra("username",compteRecup.getUsername());
+                it.putExtra("email",compteRecup.getEmail());
+                it.putExtra("password",compteRecup.getPassword());
+                it.putExtra("pathImage",compteRecup.getPathImage());
+
+
+
 
                 Toast.makeText(this, "Connexion réussie", Toast.LENGTH_LONG).show();
                 saveData();
@@ -79,6 +86,19 @@ public class ConnectionActivity extends AppCompatActivity {
         editor.putString("username",text_username.getText().toString());
         editor.putBoolean("Connected",true);
         editor.commit();
+    }
+
+
+    //si l'utilisateur etait deja connecte grace au preferences on recupere qu'il etait deja connecteon met son username dans les textview
+    private void verification_connection() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String username = preferences.getString("username", "");
+        Boolean connected = preferences.getBoolean("Connected",false);
+
+        if(connected){
+            text_username.setText(username);
+        }
+
     }
 
 }

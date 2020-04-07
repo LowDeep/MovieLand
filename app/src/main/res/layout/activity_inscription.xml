@@ -23,6 +23,13 @@
         android:textSize="50dp"
         android:textStyle="italic|bold"/>
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <TextView
         android:layout_width="250dp"
         android:layout_height="50dp"
